@@ -24,7 +24,7 @@ export default function HomePage() {
       <ElectronicCategory/>
       <FeatureArea/>
       <ProductArea/>
-      <BannerArea/>
+      {/* <BannerArea/>
       <OfferProducts/>
       <ProductGadgetArea/>
       <ProductBanner/>
@@ -32,7 +32,7 @@ export default function HomePage() {
       <ProductSmArea/>
       <BlogArea/>
       <InstagramArea/>
-      <CtaArea/>
+      <CtaArea/> */}
       <Footer/>
     </Wrapper>
   )
