@@ -20,7 +20,7 @@ const sliderData = [
   {
     id: 1,
     pre_title: { text: "Starting at", price: 274 },
-    title: "The best tablet Collection 2023",
+    title: "The best Women Bag Collection 2024",
     subtitle: {
       text_1: "Exclusive offer ",
       percent: 35,
@@ -32,7 +32,7 @@ const sliderData = [
   {
     id: 2,
     pre_title: { text: "Starting at", price: 999 },
-    title: "The best note book collection 2023",
+    title: "The best Hand Bag collection 2024",
     subtitle: {
       text_1: "Exclusive offer ",
       percent: 10,
@@ -44,7 +44,7 @@ const sliderData = [
   {
     id: 3,
     pre_title: { text: "Starting at", price: 999 },
-    title: "The best note book collection 2023",
+    title: "The best Products collection 2024",
     subtitle: {
       text_1: "Exclusive offer ",
       percent: 10,

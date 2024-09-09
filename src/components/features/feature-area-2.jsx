@@ -1,6 +1,8 @@
 'use client';
 import React from 'react';
 import { Delivery, Discount, Refund, Support } from '@/svg';
+import config from "@/config/config";
+const {currency} =  config
 
 export const feature_data = [
   {
@@ -16,7 +18,7 @@ export const feature_data = [
   {
     icon: <Discount />,
     title: 'Member Discount',
-    subtitle: 'Onevery order over $140.00'
+    subtitle: `Onevery order over ${currency}140.00`
   },
   {
     icon: <Support />,

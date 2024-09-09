@@ -10,6 +10,8 @@ import Timer from "@/components/common/timer";
 import { handleProductModal } from "@/redux/features/productModalSlice";
 import { add_cart_product } from "@/redux/features/cartSlice";
 import { add_to_wishlist } from "@/redux/features/wishlist-slice";
+import config from "@/config/config";
+const {currency} =  config;
 
 const ProductItem = ({ product, offer_style = false }) => {
   const { _id, img, category, title, reviews, price, discount,status,offerDate } = product || {};
@@ -137,7 +139,7 @@ const ProductItem = ({ product, offer_style = false }) => {
                 </span>
               </>
             ) : (
-              <span className="tp-product-price new-price">${parseFloat(price).toFixed(2)}</span>
+              <span className="tp-product-price new-price">{currency}{parseFloat(price).toFixed(2)}</span>
             )}
           </div>
           {offer_style && (
