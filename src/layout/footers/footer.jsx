@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 // internal
-import logo from '@assets/img/logo/logo.svg';
+import logo from '@assets/img/logo/TheTidbit1.png';
 import pay from '@assets/img/footer/footer-pay.png';
 import social_data from '@/data/social-data';
 import { Email, Location } from '@/svg';
@@ -23,7 +23,7 @@ const Footer = ({ style_2 = false, style_3 = false,primary_style=false }) => {
                         <Image src={logo} alt="logo" />
                       </Link>
                     </div>
-                    <p className="tp-footer-desc">We are a team of designers and developers that create high quality WordPress</p>
+                    <p className="tp-footer-desc">We are a team of passionate creators bringing you the finest products for a seamless shopping experience.</p>
                     <div className="tp-footer-social">
                       {social_data.map(s => <a href={s.link} key={s.id} target="_blank">
                         <i className={s.icon}></i>
@@ -38,12 +38,12 @@ const Footer = ({ style_2 = false, style_3 = false,primary_style=false }) => {
                   <h4 className="tp-footer-widget-title">My Account</h4>
                   <div className="tp-footer-widget-content">
                     <ul>
-                      <li><a href="#">Track Orders</a></li>
-                      <li><a href="#">Shipping</a></li>
-                      <li><a href="#">Wishlist</a></li>
-                      <li><a href="#">My Account</a></li>
-                      <li><a href="#">Order History</a></li>
-                      <li><a href="#">Returns</a></li>
+                      {/* <li><a href="/profile">Track Orders</a></li> */}
+                      {/* <li><a href="#">Shipping</a></li> */}
+                      <li><a href="/wishlist">Wishlist</a></li>
+                      <li><a href="/profile">My Account</a></li>
+                      <li><a href="/profile">Order History</a></li>
+                      {/* <li><a href="#">Returns</a></li> */}
                     </ul>
                   </div>
                 </div>
@@ -53,11 +53,11 @@ const Footer = ({ style_2 = false, style_3 = false,primary_style=false }) => {
                   <h4 className="tp-footer-widget-title">Information</h4>
                   <div className="tp-footer-widget-content">
                     <ul>
-                      <li><a href="#">Our Story</a></li>
-                      <li><a href="#">Careers</a></li>
+                      {/* <li><a href="#">Our Story</a></li> */}
+                      {/* <li><a href="#">Careers</a></li> */}
                       <li><a href="#">Privacy Policy</a></li>
                       <li><a href="#">Terms & Conditions</a></li>
-                      <li><a href="#">Latest News</a></li>
+                      {/* <li><a href="#">Latest News</a></li> */}
                       <li><a href="#">Contact Us</a></li>
                     </ul>
                   </div>
@@ -105,15 +105,15 @@ const Footer = ({ style_2 = false, style_3 = false,primary_style=false }) => {
               <div className="row align-items-center">
                 <div className="col-md-6">
                   <div className="tp-footer-copyright">
-                    <p>© {new Date().getFullYear()} All Rights Reserved  |  Next js Template by
-                      <Link href="/">{" "}ThemePure</Link>.
+                    <p>© {new Date().getFullYear()} All Rights Reserved 
+                      {/* <Link href="/">{" "}ThemePure</Link>. */}
                     </p>
                   </div>
                 </div>
                 <div className="col-md-6">
                   <div className="tp-footer-payment text-md-end">
                     <p>
-                      <Image src={pay} alt="pay" />
+                      {/* <Image src={pay} alt="pay" /> */}
                     </p>
                   </div>
                 </div>

@@ -25,6 +25,7 @@ const GoogleSignUp = () => {
       });
     }
   };
+  console.log("@@@@@@@@@@@@@@@@@@@@")
   return (
     <GoogleLogin
       render={(renderProps) => (

@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 // internal
 import useCartInfo from "@/hooks/use-cart-info";
 import ErrorMsg from "../common/error-msg";
+import config from "@/config/config";
+const currency = config.currency
 
 const CheckoutOrderArea = ({ checkoutData }) => {
   const {
@@ -40,7 +42,7 @@ const CheckoutOrderArea = ({ checkoutData }) => {
               <p>
                 {item.title} <span> x {item.orderQuantity}</span>
               </p>
-              <span>${item.price.toFixed(2)}</span>
+              <span>{currency}{item.price.toFixed(2)}</span>
             </li>
           ))}
 
@@ -61,7 +63,7 @@ const CheckoutOrderArea = ({ checkoutData }) => {
                   onClick={() => handleShippingCost(60)}
                   htmlFor="flat_shipping"
                 >
-                  Delivery: Today Cost :<span>$60.00</span>
+                  Delivery: Today Cost :<span>{currency}60.00</span>
                 </label>
                 <ErrorMsg msg={errors?.shippingOption?.message} />
               </span>
@@ -78,7 +80,7 @@ const CheckoutOrderArea = ({ checkoutData }) => {
                   onClick={() => handleShippingCost(20)}
                   htmlFor="flat_rate"
                 >
-                  Delivery: 7 Days Cost: <span>$20.00</span>
+                  Delivery: 7 Days Cost: <span>{currency}20.00</span>
                 </label>
                 <ErrorMsg msg={errors?.shippingOption?.message} />
               </span>
@@ -88,30 +90,32 @@ const CheckoutOrderArea = ({ checkoutData }) => {
            {/*  subtotal */}
            <li className="tp-order-info-list-subtotal">
             <span>Subtotal</span>
-            <span>${total.toFixed(2)}</span>
+            <span>{currency}{total.toFixed(2)}</span>
           </li>
 
            {/*  shipping cost */}
            <li className="tp-order-info-list-subtotal">
             <span>Shipping Cost</span>
-            <span>${shippingCost.toFixed(2)}</span>
+            <span>{currency}{shippingCost.toFixed(2)}</span>
           </li>
 
            {/* discount */}
            <li className="tp-order-info-list-subtotal">
             <span>Discount</span>
-            <span>${discountAmount.toFixed(2)}</span>
+            <span>{currency}{discountAmount.toFixed(2)}</span>
           </li>
 
           {/* total */}
           <li className="tp-order-info-list-total">
             <span>Total</span>
-            <span>${parseFloat(cartTotal).toFixed(2)}</span>
+            <span>{currency}{parseFloat(cartTotal).toFixed(2)}</span>
           </li>
         </ul>
       </div>
       <div className="tp-checkout-payment">
-        <div className="tp-checkout-payment-item">
+
+      {/* UNCOMMENT IT ONCE PAYMENT GATEWAY AVAILABLE */}
+        {/* <div className="tp-checkout-payment-item">
           <input
             {...register(`payment`, {
               required: `Payment Option is required!`,
@@ -147,7 +151,7 @@ const CheckoutOrderArea = ({ checkoutData }) => {
             </div>
           )}
           <ErrorMsg msg={errors?.payment?.message} />
-        </div>
+        </div> */}
         <div className="tp-checkout-payment-item">
           <input
             {...register(`payment`, {

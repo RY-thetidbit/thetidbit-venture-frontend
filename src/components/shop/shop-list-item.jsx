@@ -9,6 +9,8 @@ import { handleProductModal } from "@/redux/features/productModalSlice";
 import { add_cart_product } from "@/redux/features/cartSlice";
 import { add_to_wishlist } from "@/redux/features/wishlist-slice";
 import { add_to_compare } from "@/redux/features/compareSlice";
+import config from "@/config/config";
+const currency = config.currency
 
 const ShopListItem = ({ product }) => {
   const { _id, img, category, title, reviews, price, discount, tags, description } = product || {};
@@ -96,13 +98,13 @@ const ShopListItem = ({ product }) => {
           <div className="tp-product-price-wrapper-2">
             {discount > 0 ? (
               <>
-                <span className="tp-product-price-2 new-price">${price}</span>
+                <span className="tp-product-price-2 new-price">{currency}{price}</span>
                 <span className="tp-product-price-2 old-price">
                   {" "} ${(Number(price) - (Number(price) * Number(discount)) / 100).toFixed(2)}
                 </span>
               </>
             ) : (
-              <span className="tp-product-price-2 new-price">${price}</span>
+              <span className="tp-product-price-2 new-price">{currency}{price}</span>
             )}
           </div>
           <p>

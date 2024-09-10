@@ -1,6 +1,8 @@
 'use client';
 import InputRange from "@/ui/input-range";
 import { useRouter } from "next/navigation";
+import config from "@/config/config";
+const currency = config.currency
 
 const PriceFilter = ({ priceFilterValues,maxPrice }) => {
   const { priceValue,handleChanges } = priceFilterValues;
@@ -27,7 +29,7 @@ const PriceFilter = ({ priceFilterValues,maxPrice }) => {
             </div>
             <div className="tp-shop-widget-filter-info d-flex align-items-center justify-content-between">
               <span className="input-range">
-                ${priceValue[0]} - ${priceValue[1]}
+              {currency}{priceValue[0]} - {currency}{priceValue[1]}
               </span>
               <button onClick={handlePriceFilter} className="tp-shop-widget-filter-btn" type="button">
                 Filter
