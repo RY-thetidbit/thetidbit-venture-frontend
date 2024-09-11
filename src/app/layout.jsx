@@ -1,7 +1,7 @@
 import './globals.scss';
 import {Jost, Roboto,Charm,Oregano} from 'next/font/google';
 import Providers from '@/components/provider';
-import Head from 'next/head'; // Import the Head component
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata = {
   title: 'Thetidbit | Thetidbit.in - e-Commerce Next js Template',
@@ -47,25 +47,12 @@ const charm = Charm({
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-    <Head>
-        {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0W0QQM533L"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-0W0QQM533L');
-            `,
-          }}
-        />
-      </Head>
       <body className={`${body.variable} ${heading.variable} ${p.variable} ${jost.variable} ${roboto.variable} ${oregano.variable} ${charm.variable}`}>
         <Providers>
           {children}
         </Providers>
       </body>
+      <GoogleAnalytics gaId="G-0W0QQM533L" />
     </html>
   )
 }
