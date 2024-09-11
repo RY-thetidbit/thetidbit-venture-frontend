@@ -13,13 +13,13 @@ export const feature_data = [
   {
     icon: <Refund />,
     title: 'Return & Refund',
-    subtitle: 'Money back guarantee'
+    subtitle: 'Money back guarantee for genuine return'
   },
-  // {
-  //   icon: <Discount />,
-  //   title: 'Member Discount',
-  //   subtitle: `Onevery order over ${currency}140.00`
-  // },
+  {
+    icon: <Discount />,
+    title: 'Member Discount',
+    subtitle: `Onevery order over ${currency}140.00`
+  },
   {
     icon: <Support />,
     title: 'Support 24/7',
