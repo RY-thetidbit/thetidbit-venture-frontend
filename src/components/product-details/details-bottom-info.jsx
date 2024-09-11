@@ -26,18 +26,18 @@ const DetailsBottomInfo = ({sku,category,tag}) => {
 
       <div className="tp-product-details-social">
         <span>Share: </span>
-        <a href="#">
+        <a href="https://www.facebook.com/thetidbitin">
           <i className="fa-brands fa-facebook-f"></i>
         </a>
-        <a href="#">
-          <i className="fa-brands fa-twitter"></i>
+        <a href="https://www.instagram.com/thetidbit.in/">
+          <i className="fa-brands fa-instagram"></i>
         </a>
-        <a href="#">
-          <i className="fa-brands fa-linkedin-in"></i>
+        <a href="https://www.youtube.com/@Thetidbit.">
+          <i className="fa-brands fa-youtube"></i>
         </a>
-        <a href="#">
+        {/* <a href="#">
           <i className="fa-brands fa-vimeo-v"></i>
-        </a>
+        </a> */}
       </div>
 
       {/* product-details-msg */}

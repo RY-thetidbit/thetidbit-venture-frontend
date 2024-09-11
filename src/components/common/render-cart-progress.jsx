@@ -1,6 +1,7 @@
 import React from "react";
 import useCartInfo from "@/hooks/use-cart-info";
-
+import config from "@/config/config";
+const currency = config.currency
 const RenderCartProgress = () => {
   const { total } = useCartInfo();
   const freeShippingThreshold = 200;
@@ -9,7 +10,7 @@ const RenderCartProgress = () => {
     const remainingAmount = freeShippingThreshold - total;
     return (
       <>
-        <p>{`Add $${remainingAmount.toFixed(
+        <p>{`Add ${currency}${remainingAmount.toFixed(
           2
         )} more to qualify for free shipping`}</p>
         <div className="progress">

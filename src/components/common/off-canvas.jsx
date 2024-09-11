@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { CloseTwo } from '@/svg';
 import logo from '@assets/img/logo/logo.svg';
 import contact_img from '@assets/img/icon/contact.png';
-import language_img from '@assets/img/icon/language-flag.png';
+import language_img from '@assets/img/icon/india-flag.png';
 import MobileCategory from '@/layout/headers/header-com/mobile-category';
 import MobileMenus from './mobile-menus';
 
@@ -74,7 +74,7 @@ const OffCanvas = ({ isOffCanvasOpen, setIsCanvasOpen,categoryType = "electronic
           </div>
           <div className="offcanvas__bottom">
             <div className="offcanvas__footer d-flex align-items-center justify-content-between">
-              <div className="offcanvas__currency-wrapper currency">
+              {/* <div className="offcanvas__currency-wrapper currency">
                 <span onClick={handleCurrencyActive} className="offcanvas__currency-selected-currency tp-currency-toggle" id="tp-offcanvas-currency-toggle">Currency : USD</span>
                 <ul className={`offcanvas__currency-list tp-currency-list ${isCurrencyActive ? 'tp-currency-list-open' : ''}`}>
                   <li>USD</li>
@@ -82,7 +82,7 @@ const OffCanvas = ({ isOffCanvasOpen, setIsCanvasOpen,categoryType = "electronic
                   <li>BDT </li>
                   <li>INR</li>
                 </ul>
-              </div>
+              </div> */}
               <div className="offcanvas__select language">
                 <div className="offcanvas__lang d-flex align-items-center justify-content-md-end">
                   <div className="offcanvas__lang-img mr-15">
