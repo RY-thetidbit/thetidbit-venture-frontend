@@ -13,7 +13,7 @@ import InstagramAreaThree from "@/components/instagram/instagram-area-3";
 import Footer from "@/layout/footers/footer";
 
 export const metadata = {
-  title: "Shofy - Home Three",
+  title: "Thetidbit | Thetidbit.in - Home Three",
 };
 
 export default function HomePageThree() {

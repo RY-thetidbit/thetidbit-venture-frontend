@@ -4,7 +4,7 @@ import Footer from "@/layout/footers/footer";
 import OrderArea from "@/components/order/order-area";
 
 export const metadata = {
-  title: "Shofy - Order Page",
+  title: "Thetidbit | Thetidbit.in - Order Page",
 };
 
 export default function OrderPage({ params }) {

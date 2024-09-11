@@ -14,6 +14,8 @@ import shape_2 from "@assets/img/slider/shape/slider-shape-2.png";
 import shape_3 from "@assets/img/slider/shape/slider-shape-3.png";
 import shape_4 from "@assets/img/slider/shape/slider-shape-4.png";
 import { ArrowRightLong, SliderNextBtn, SliderPrevBtn, TextShape } from "@/svg";
+import config from "@/config/config";
+const currency = config?.currency;
 
 // slider data
 const sliderData = [
@@ -115,7 +117,7 @@ const HomeHeroSlider = () => {
                   <div className="col-xl-5 col-lg-6 col-md-6">
                     <div className="tp-slider-content p-relative z-index-1">
                       <span>
-                        {item.pre_title.text} <b>${item.pre_title.text}</b>
+                      {item.pre_title.text} <b>{currency}250 </b> {/* {item.pre_title.text} <b>${item.pre_title.text}</b> */}
                       </span>
                       <h3 className="tp-slider-title">{item.title}</h3>
                       <p>

@@ -6,7 +6,7 @@ import Footer from "@/layout/footers/footer";
 
 
 export const metadata = {
-  title: "Shofy - Blog Grid Page",
+  title: "Thetidbit | Thetidbit.in - Blog Grid Page",
 };
 
 export default function BlogGridPage() {

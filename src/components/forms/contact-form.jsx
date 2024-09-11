@@ -18,6 +18,7 @@ const schema = Yup.object().shape({
     .label("Terms and Conditions"),
 });
 
+const sendEnquiry = async()=>{}
 const ContactForm = () => {
 
     // react hook form
@@ -26,8 +27,34 @@ const ContactForm = () => {
     });
     // on submit
     const onSubmit = (data) => {
+      console.log("#$@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
       if(data){
-        notifySuccess('Message sent successfully!');
+  
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        
+        var raw = JSON.stringify({
+          "subject": data?.subject,
+          "name": data?.name,
+          "email": data?.email,
+          "message": data?.message
+        });
+        
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+        
+        fetch("http://localhost:7000/api/user/contact-enquiry", requestOptions)
+          .then(response => response.text())
+          .then(result =>{
+            notifySuccess('Message sent successfully!');
+          })
+          .catch(error => console.log('error', error));
+        // console.log("#$$$$$$$$$$$$$$$$$$$$$$$$:",data)
+        // notifySuccess('Message1 sent successfully!');
       }
 
       reset();

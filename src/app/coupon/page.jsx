@@ -5,7 +5,7 @@ import CouponArea from '@/components/coupon/coupon-area';
 import Footer from '@/layout/footers/footer';
 
 export const metadata = {
-  title: "Shofy - Coupon Page",
+  title: "Thetidbit | Thetidbit.in - Coupon Page",
 };
 
 export default function CouponPage() {

@@ -15,7 +15,7 @@ import Footer from '@/layout/footers/footer';
 
 
 export const metadata = {
-  title: 'Shofy - Home Two',
+  title: 'ShoThetidbit | Thetidbit.infy - Home Two',
 }
 
 export default function HomePageTwo() {

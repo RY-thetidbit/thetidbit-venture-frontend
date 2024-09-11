@@ -5,7 +5,7 @@ import CommonBreadcrumb from "@/components/breadcrumb/common-breadcrumb";
 import WishlistArea from "@/components/cart-wishlist/wishlist-area";
 
 export const metadata = {
-  title: "Shofy - Wishlist Page",
+  title: "Thetidbit | Thetidbit.in - Wishlist Page",
 };
 
 export default function WishlistPage() {
