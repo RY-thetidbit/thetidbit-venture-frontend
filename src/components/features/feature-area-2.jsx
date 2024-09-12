@@ -1,8 +1,34 @@
 'use client';
 import React from 'react';
+import Image from "next/image";
+import Link from "next/link";
 import { Delivery, Discount, Refund, Support } from '@/svg';
 import config from "@/config/config";
+import amazonLogo from "@assets/img/amazon-available (1).png";
+import flipkartLogo from "@assets/img/flipkart.png";
 const {currency} =  config
+
+const AmazonImage = ()=><Link href={`https://www.amazon.in/s?me=A141FX4CK0KAZ4&marketplaceID=A21TJRUUN4KGV&ref=v_sp_carousel_all_asins`}>
+<Image
+  src={amazonLogo}
+  width="0"
+  height="0"
+  sizes="100vw"
+  style={{ width: "250px", height: "45px" }}
+  alt="product-electronic"
+/>
+</Link>
+
+const FlipkartImage = ()=><Link href={`https://www.amazon.in/s?me=A141FX4CK0KAZ4&marketplaceID=A21TJRUUN4KGV&ref=v_sp_carousel_all_asins`}>
+<Image
+  src={flipkartLogo}
+  width="0"
+  height="0"
+  sizes="100vw"
+  style={{ width: "250px", height: "45px" }}
+  alt="product-electronic"
+/>
+</Link>
 
 export const feature_data = [
   {
@@ -11,20 +37,34 @@ export const feature_data = [
     subtitle: 'Orders from all item'
   },
   {
-    icon: <Refund />,
-    title: 'Return & Refund',
-    subtitle: 'Money back guarantee for genuine return'
+    type:"card",
+    icon: <AmazonImage />,
+    title: 'available on amazon',
+    subtitle: 'available on amazon'
   },
   {
-    icon: <Discount />,
-    title: 'Member Discount',
-    subtitle: `Onevery order over ${currency}140.00`
+    type:"card",
+    icon: <FlipkartImage />,
+    title: 'available on flipkart',
+    subtitle: 'available on flipkart'
   },
+  
+  // {
+  //   icon: <Refund />,
+  //   title: 'Return & Refund',
+  //   subtitle: 'Moneyback on genuine'
+  // },
+  // {
+  //   icon: <Discount />,
+  //   title: 'Member Discount',
+  //   subtitle: `Onevery order over ${currency}140.00`
+  // },
   {
     icon: <Support />,
     title: 'Support 24/7',
     subtitle: 'Contact us 24 hours a day'
   },
+  
 ]
 
 
