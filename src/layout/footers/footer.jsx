@@ -43,6 +43,7 @@ const Footer = ({ style_2 = false, style_3 = false,primary_style=false }) => {
                       <li><a href="/wishlist">Wishlist</a></li>
                       <li><a href="/profile">My Account</a></li>
                       <li><a href="/profile">Order History</a></li>
+                      <li><a href="/return-policy">Return Policy</a></li>
                       {/* <li><a href="#">Returns</a></li> */}
                     </ul>
                   </div>
@@ -106,7 +107,6 @@ const Footer = ({ style_2 = false, style_3 = false,primary_style=false }) => {
                 <div className="col-md-6">
                   <div className="tp-footer-copyright">
                     <p>© {new Date().getFullYear()} All Rights Reserved 
-                      {/* <Link href="/">{" "}ThemePure</Link>. */}
                     </p>
                   </div>
                 </div>
