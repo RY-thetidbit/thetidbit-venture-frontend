@@ -4,7 +4,7 @@ import ProductDetailsArea from "@/components/product-details/product-details-are
 import Footer from "@/layout/footers/footer";
 
 export const metadata = {
-  title: "Thetidbit | Thetidbit.in - Product Details Page",
+  title: "Thetidbit | Thetidbit.in - Product Details Page parent",
 };
 
 export default function ProductDetailsPage() {
