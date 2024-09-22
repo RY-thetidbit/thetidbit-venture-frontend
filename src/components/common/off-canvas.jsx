@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 // internal
 import { CloseTwo } from '@/svg';
-import logo from '@assets/img/logo/logo.svg';
+import logo from '@assets/img/logo/TheTibit-header.png';
 import contact_img from '@assets/img/icon/contact.png';
 import language_img from '@assets/img/icon/india-flag.png';
 import MobileCategory from '@/layout/headers/header-com/mobile-category';

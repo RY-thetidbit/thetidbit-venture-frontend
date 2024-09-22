@@ -4,7 +4,7 @@ import Image from "next/image";
 import dayjs from "dayjs";
 import ReactToPrint from "react-to-print";
 // internal
-import logo from "@assets/img/logo/logo.svg";
+import logo from "@assets/img/logo/TheTibit-header.png";
 import ErrorMsg from "@/components/common/error-msg";
 import { useGetUserOrderByIdQuery } from "@/redux/features/order/orderApi";
 import PrdDetailsLoader from "@/components/loader/prd-details-loader";
