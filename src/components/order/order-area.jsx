@@ -8,7 +8,8 @@ import logo from "@assets/img/logo/TheTibit-header.png";
 import ErrorMsg from "@/components/common/error-msg";
 import { useGetUserOrderByIdQuery } from "@/redux/features/order/orderApi";
 import PrdDetailsLoader from "@/components/loader/prd-details-loader";
-
+import config from "@/config/config";
+const currency = config.currency
 
 const OrderArea = ({ orderId }) => {
   const printRef = useRef();
@@ -18,10 +19,20 @@ const OrderArea = ({ orderId }) => {
     content = <PrdDetailsLoader loading={isLoading}/>
   }
   if (isError) {
-    content = <ErrorMsg msg="There was an error" />;
+    content = <ErrorMsg msg="There was an error, If the amount has been deducted from your account, please contact us immediately at +91 9226740297 for assistance." />;
   }
   if (!isLoading && !isError) {
-    const { name, country, city, contact, invoice, createdAt, cart, shippingCost, discount, totalAmount,paymentMethod} = order.order;
+    const { name,paymentStatus="failed", country, city, contact, invoice, createdAt, cart, shippingCost, discount, totalAmount,paymentMethod, status} = order.order;
+    
+    if (paymentStatus === 'failed') {
+      content = (
+        <div className="alert alert-danger">
+          <strong>Payment Failed</strong> - Unfortunately, your payment for this order was not successful. If the amount has been deducted from your account, please contact us immediately at +91 9226740297 for assistance..
+          
+        </div>
+      );
+    } else {
+    
     content = (
       <>
         <section className="invoice__area pt-120 pb-120">
@@ -96,8 +107,8 @@ const OrderArea = ({ orderId }) => {
                         <td>{i + 1}</td>
                         <td>{item.title}</td>
                         <td>{item.orderQuantity}</td>
-                        <td>${item.price}</td>
-                        <td>${item.price * item.orderQuantity}</td>
+                        <td>{currency}{item.price}</td>
+                        <td>{currency}{item.price * item.orderQuantity}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -114,20 +125,20 @@ const OrderArea = ({ orderId }) => {
                   <div className="col-lg-3 col-md-4">
                     <div className="invoice__shippint-cost mb-30">
                       <h5 className="mb-0">Shipping Cost</h5>
-                      <p className="tp-font-medium">${shippingCost}</p>
+                      <p className="tp-font-medium">{currency}{shippingCost}</p>
                     </div>
                   </div>
                   <div className="col-lg-3 col-md-4">
                     <div className="invoice__discount-cost mb-30">
                       <h5 className="mb-0">Discount</h5>
-                      <p className="tp-font-medium">${discount.toFixed(2)}</p>
+                      <p className="tp-font-medium">{currency}{discount.toFixed(2)}</p>
                     </div>
                   </div>
                   <div className="col-lg-3 col-md-4">
                     <div className="invoice__total-ammount mb-30">
                       <h5 className="mb-0">Total Ammount</h5>
                       <p className="tp-font-medium text-danger">
-                        <strong>${parseInt(totalAmount).toFixed(2)}</strong>
+                        <strong>{currency}{parseInt(totalAmount).toFixed(2)}</strong>
                       </p>
                     </div>
                   </div>
@@ -160,6 +171,7 @@ const OrderArea = ({ orderId }) => {
         </section>
       </>
     );
+  }
   }
   
   return (

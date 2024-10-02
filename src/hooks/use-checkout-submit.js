@@ -13,6 +13,8 @@ import { set_coupon } from "@/redux/features/coupon/couponSlice";
 import { notifyError, notifySuccess } from "@/utils/toast";
 import {useCreatePaymentIntentMutation,useSaveOrderMutation} from "@/redux/features/order/orderApi";
 import { useGetOfferCouponsQuery } from "@/redux/features/coupon/couponApi";
+import createPaymentIntentPhonePay from "../api/paymentApi"
+import { redirect } from "next/navigation";
 
 const useCheckoutSubmit = () => {
   // offerCoupons
@@ -154,7 +156,7 @@ const useCheckoutSubmit = () => {
 
     if (total < result[0]?.minimumAmount) {
       notifyError(
-        `Minimum ${result[0].minimumAmount} USD required for Apply this coupon!`
+        `Minimum ${result[0].minimumAmount} RS required for Apply this coupon!`
       );
       return;
     } else {
@@ -240,6 +242,10 @@ const useCheckoutSubmit = () => {
        return handlePaymentWithStripe(orderData);
       }
     }
+    if (data.payment === 'Phonepay') {
+      console.log("phonepay submit handler",orderInfo);
+      return handlePaymentWithPhonePay(orderInfo);
+    }
     if (data.payment === 'COD') {
       saveOrder({
         ...orderInfo
@@ -295,6 +301,56 @@ const useCheckoutSubmit = () => {
             router.push(`/order/${result.data?.order?._id}`);
           }
         })
+       } 
+    catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handlePaymentWithPhonePay = async (order) => {
+    try {
+
+      const response = await createPaymentIntentPhonePay(order);
+      console.log("paymentIntentData:",response);
+      const redirect=response.response.data.instrumentResponse.redirectInfo.url;
+      console.log("redirect",redirect)
+      router.push(redirect)
+
+      // const {paymentIntent, error:intentErr} = await stripe.confirmCardPayment(
+      //   clientSecret,
+      //   {
+      //     payment_method: {
+      //       card: elements.getElement(CardElement),
+      //       billing_details: {
+      //         name: user?.firstName,
+      //         email: user?.email,
+      //       },
+      //     },
+      //   },
+      // );
+      // if (intentErr) {
+      //   notifyError(intentErr.message);
+      // } else {
+      //   // notifySuccess("Your payment processed successfully");
+      // }
+
+      // const orderData = {
+      //   ...order,
+      //   paymentIntent,
+      // };
+
+      // saveOrder({
+      //   ...orderData
+      // })
+      // .then((result) => {
+      //     if(result?.error){
+      //     }
+      //     else {
+      //       localStorage.removeItem("couponInfo");
+      //       notifySuccess("Your Order Confirmed!");
+      //       router.push(`/order/${result.data?.order?._id}`);
+      //     }
+      //   })
        } 
     catch (err) {
       console.log(err);

@@ -152,6 +152,21 @@ const CheckoutOrderArea = ({ checkoutData }) => {
           )}
           <ErrorMsg msg={errors?.payment?.message} />
         </div> */}
+        {/* PHONEPAY INTEGRATION */}
+        <div className="tp-checkout-payment-item">
+          <input
+            {...register(`payment`, {
+              required: `Payment Option is required!`,
+            })}
+            onClick={() => setShowCard(false)}
+            type="radio"
+            id="phonepay"
+            name="payment"
+            value="Phonepay"
+          />
+          <label htmlFor="phonepay">Phone Pay</label>
+          <ErrorMsg msg={errors?.payment?.message} />
+        </div>
         <div className="tp-checkout-payment-item">
           <input
             {...register(`payment`, {
