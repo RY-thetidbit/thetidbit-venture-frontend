@@ -31,11 +31,11 @@ const CtaArea = () => {
         <div className="row align-items-center">
           <div className="col-xl-7 col-lg-7">
             <div className="tp-subscribe-content">
-              <span>Sale 20% off all store</span>
-              <h3 className="tp-subscribe-title">Subscribe our Newsletter</h3>
+              <span>Thetidbit</span>
+              <h3 className="tp-subscribe-title">A Style Statement That’s Affordable, Elegant, and Timeless!</h3>
             </div>
           </div>
-          <div className="col-xl-5 col-lg-5">
+          {/* <div className="col-xl-5 col-lg-5">
             <div className="tp-subscribe-form">
               <form action="#">
                 <div className="tp-subscribe-input">
@@ -44,7 +44,7 @@ const CtaArea = () => {
                 </div>
               </form>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

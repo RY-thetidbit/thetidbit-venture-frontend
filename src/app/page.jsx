@@ -27,15 +27,15 @@ export default function HomePage() {
       <div style={{marginTop: "60px"}}></div>
       <FeatureArea/>
       <ProductArea/>
-      {/* <BannerArea/> */}
-      {/* <OfferProducts/> */}
-      {/* <ProductGadgetArea/> */}
-      {/* <ProductBanner/> */}
-       {/* <NewArrivals/> */}
-      {/* <ProductSmArea/> */}
-      {/* <BlogArea/> */}
-      {/* <InstagramArea/> */}
-      {/* <CtaArea/>  */}
+      <BannerArea/>
+      <OfferProducts/>
+      <ProductGadgetArea/>
+      <ProductBanner/>
+       <NewArrivals/>
+      <ProductSmArea/>
+      <BlogArea/>
+      <InstagramArea/>
+      <CtaArea/> 
       <Footer/>
     </Wrapper>
   )

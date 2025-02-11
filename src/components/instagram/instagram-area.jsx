@@ -10,11 +10,11 @@ import ins_5 from '@assets/img/instagram/instagram-5.jpg';
 
 // instagram data 
 const instagram_data = [
-  { id: 1, link: 'https://www.instagram.com/', img: ins_1 },
-  { id: 2, link: 'https://www.instagram.com/', img: ins_2 },
-  { id: 3, link: 'https://www.instagram.com/', img: ins_3 },
-  { id: 4, link: 'https://www.instagram.com/', img: ins_4 },
-  { id: 5, link: 'https://www.instagram.com/', img: ins_5 },
+  { id: 1, link: 'https://www.instagram.com/p/DCMeS4WMfn8/', img: ins_1 },
+  { id: 2, link: 'https://www.instagram.com/p/DFiMLydBGod/', img: ins_2 },
+  { id: 3, link: 'https://www.instagram.com/p/DF4mndSI-v7/', img: ins_3 },
+  { id: 4, link: 'https://www.instagram.com/p/DAOZWG-K40-/', img: ins_4 },
+  { id: 5, link: 'https://www.instagram.com/p/DAK_Xe-qY2B/', img: ins_5 },
 ]
 
 const InstagramArea = () => {

@@ -15,28 +15,28 @@ const bannerProducts = [
   {
     id: 1,
     banner_bg_txt: 'tablet',
-    subtitle: 'Tablet Collection 2023',
-    title: 'Galaxy Tab S6 Lite Android Tablet',
-    oldPrice: 320,
-    newPrice: 288,
+    subtitle: 'Compact & Lightweight Shoulder Purse for Travel, Shopping & Daily Use',
+    title: 'TheTidbit Handmade Jute Crossbody Bag for Women  red',
+    oldPrice: 799.00,
+    newPrice: 599.00,
     img: banner_img_1,
   },
   {
     id: 2,
     banner_bg_txt: 'tablet',
-    subtitle: 'Tablet Collection 2023',
-    title: 'Galaxy Tab S6 Lite Android Tablet',
-    oldPrice: 320,
-    newPrice: 288,
+    subtitle: 'Blue Compact  Lightweight Shoulder Purse for Travel, Shopping & Daily',
+    title: 'TheTidbit Handmade Blue Jute Crossbody Bag for Women',
+    oldPrice: 799.00,
+    newPrice: 599.00,
     img: banner_img_2,
   },
   {
     id: 3,
     banner_bg_txt: 'tablet',
-    subtitle: 'Tablet Collection 2023',
-    title: 'Galaxy Tab S6 Lite Android Tablet',
-    oldPrice: 320,
-    newPrice: 288,
+    subtitle: 'Stylish & Eco-Friendly Shoulder Handbag Large Bag for Shopping, Beach',
+    title: 'TheTidbit Handmade Jute Evil Eye Tote Bags for Women',
+    oldPrice: 630,
+    newPrice: 530.00,
     img: banner_img_3,
   },
 ]
@@ -68,8 +68,8 @@ const ProductBanner = () => {
                         <span className="tp-product-banner-subtitle">{item.subtitle}</span>
                         <h3 className="tp-product-banner-title">{item.title}</h3>
                         <div className="tp-product-banner-price mb-40">
-                          <span className="old-price">${item.oldPrice.toFixed(2)}</span>
-                          <p className="new-price">${item.newPrice.toFixed(2)}</p>
+                          <span className="old-price">₹{item.oldPrice.toFixed(2)}</span>
+                          <p className="new-price">₹{item.newPrice.toFixed(2)}</p>
                         </div>
                         <div className="tp-product-banner-btn">
                           <Link href="/shop" className="tp-btn tp-btn-2">Shop now</Link>

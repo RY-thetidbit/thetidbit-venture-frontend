@@ -28,8 +28,8 @@ const ProductSmArea = () => {
     const featured_prd = products.data.filter(p => p.featured).slice(0, 3);
     const selling_prd = products.data.slice().sort((a, b) => b.sellCount - a.sellCount).slice(0, 3);
     content = <div className="row">
-      <div className="col-xl-4 col-md-6">
-        <div className="tp-product-sm-list mb-50">
+      {/* <div className="col-xl-4 col-md-6"> */}
+        {/* <div className="tp-product-sm-list mb-50">
           <div className="tp-section-title-wrapper mb-40">
             <h3 className="tp-section-title tp-section-title-sm">Discount Products
               <ShapeLineSm />
@@ -40,9 +40,9 @@ const ProductSmArea = () => {
               <ProductSmItem key={item._id} product={item} />
             ))}
           </div>
-        </div>
-      </div>
-      <div className="col-xl-4 col-md-6">
+        </div> */}
+      {/* </div> */}
+      <div className="col-xl-6 col-md-6">
         <div className="tp-product-sm-list mb-50">
           <div className="tp-section-title-wrapper mb-40">
             <h3 className="tp-section-title tp-section-title-sm">Featured Products
@@ -57,7 +57,7 @@ const ProductSmArea = () => {
           </div>
         </div>
       </div>
-      <div className="col-xl-4 col-md-6">
+      <div className="col-xl-6 col-md-6">
         <div className="tp-product-sm-list mb-50">
           <div className="tp-section-title-wrapper mb-40">
             <h3 className="tp-section-title tp-section-title-sm">Selling Products

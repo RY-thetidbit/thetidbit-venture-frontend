@@ -40,30 +40,31 @@ const BannerArea = () => {
   return (
     <section className="tp-banner-area pb-70">
       <div className="container">
-        <div className="row">
-          <div className="col-xl-8 col-lg-7">
-            <BannerItem
-              bg={banner_1}
-              title={
-                <>
-                  Smartphone <br /> BLU G91 Pro 2022
-                </>
-              }
-            />
-          </div>
-          <div className="col-xl-4 col-lg-5">
-            <BannerItem
-              sm={true}
-              bg={banner_2}
-              title={
-                <>
-                  HyperX Cloud II <br /> Wireless
-                </>
-              }
-            />
-          </div>
-        </div>
-      </div>
+  <div className="row">
+    <div className="col-xl-8 col-lg-7">
+      <BannerItem
+        bg={banner_1} // Replace with your women's bag banner image
+        title={
+          <>
+            Discover Our <br /> Women's Bag Collection
+          </>
+        }
+      />
+    </div>
+    <div className="col-xl-4 col-lg-5">
+      <BannerItem
+        sm={true}
+        bg={banner_2} // Replace with your additional women's bag banner image
+        title={
+          <>
+            Trendy Styles <br /> & Exclusive Offers
+          </>
+        }
+      />
+    </div>
+  </div>
+</div>
+
     </section>
   );
 };

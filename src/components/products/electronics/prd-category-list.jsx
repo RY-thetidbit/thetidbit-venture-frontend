@@ -10,7 +10,7 @@ const PrdCategoryList = () => {
     data: categories,
     isError,
     isLoading,
-  } = useGetProductTypeCategoryQuery("electronics");
+  } = useGetProductTypeCategoryQuery("fashion");
   const router = useRouter()
 
   // handle category route
