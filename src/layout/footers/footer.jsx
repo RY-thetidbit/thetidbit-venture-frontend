@@ -44,6 +44,7 @@ const Footer = ({ style_2 = false, style_3 = false,primary_style=false }) => {
                       <li><a href="/profile">My Account</a></li>
                       <li><a href="/profile">Order History</a></li>
                       <li><a href="/return-policy">Return Policy</a></li>
+                      <li><a href="/refund-policy">Refund Policy</a></li>
                       {/* <li><a href="#">Returns</a></li> */}
                     </ul>
                   </div>
@@ -56,10 +57,11 @@ const Footer = ({ style_2 = false, style_3 = false,primary_style=false }) => {
                     <ul>
                       {/* <li><a href="#">Our Story</a></li> */}
                       {/* <li><a href="#">Careers</a></li> */}
-                      <li><a href="#">Privacy Policy</a></li>
-                      <li><a href="#">Terms & Conditions</a></li>
+                      <li><a href="/privacy-policy">Privacy Policy</a></li>
+                      <li><a href="/shipping-policy">Shopping Policy</a></li>
+                      <li><a href="/terms-and-conditions">Terms & Conditions</a></li>
                       {/* <li><a href="#">Latest News</a></li> */}
-                      <li><a href="#">Contact Us</a></li>
+                      <li><a href="/contact">Contact Us</a></li>
                     </ul>
                   </div>
                 </div>

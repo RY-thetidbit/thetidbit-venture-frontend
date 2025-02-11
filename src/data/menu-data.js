@@ -9,29 +9,29 @@ const menu_data = [
     homes: true,
     title: 'Home',
     link: '/',
-    home_pages:[]
-    // home_pages: [
-    //   {
-    //     img: home_1,
-    //     title: 'Electronics',
-    //     link: '/'
-    //   },
-    //   {
-    //     img: home_2,
-    //     title: 'Fashion',
-    //     link: '/home-2'
-    //   },
-    //   {
-    //     img: home_3,
-    //     title: 'Beauty',
-    //     link: '/home-3'
-    //   },
-    //   {
-    //     img: home_4,
-    //     title: 'Jewelry',
-    //     link: '/home-4'
-    //   }
-    // ]
+    // home_pages:[]
+    home_pages: [
+      // {
+      //   img: home_1,
+      //   title: 'Electronics',
+      //   link: '/'
+      // },
+      // {
+      //   img: home_2,
+      //   title: 'Fashion',
+      //   link: '/'
+      // },
+      // {
+      //   img: home_3,
+      //   title: 'Beauty',
+      //   link: '/home-3'
+      // },
+      // {
+      //   img: home_4,
+      //   title: 'Jewelry',
+      //   link: '/home-4'
+      // }
+    ]
   },
   // {
   //   id: 2,
@@ -85,19 +85,19 @@ const menu_data = [
     id: 2,
     sub_menu: true,
     title: 'Shop',
-    link: '/shop',
+    link: '/shop-hidden-sidebar',
     sub_menus: [
-      { title: 'Shop', link: '/shop' },
+      { title: 'Shop', link: '/shop-hidden-sidebar' },
       // { title: 'Right Sidebar', link: '/shop-right-sidebar' },
       // { title: 'Hidden Sidebar', link: '/shop-hidden-sidebar' },
     ],
   },
-  {
-    id: 3,
-    single_link: true,
-    title: 'Coupons',
-    link: '/coupon',
-  },
+  // {
+  //   id: 3,
+  //   single_link: true,
+  //   title: 'Coupons',
+  //   link: '/coupon',
+  // },
   // {
   //   id: 5,
   //   sub_menu: true,
@@ -156,10 +156,10 @@ export const mobile_menu = [
     id: 2,
     sub_menu: true,
     title: 'Products',
-    link: '/shop',
+    link: '/shop-hidden-sidebar',
     // sub_menus: []
     sub_menus: [
-      { title: 'Shop', link: '/shop' },
+      { title: 'Shop', link: '/shop-hidden-sidebar' },
       // { title: 'Right Sidebar', link: '/shop-right-sidebar' },
       // { title: 'Hidden Sidebar', link: '/shop-hidden-sidebar' },
       // { title: 'Only Categories', link: '/shop-category' },

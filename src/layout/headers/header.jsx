@@ -81,16 +81,16 @@ const Header = () => {
                     {/* category start */}
                     <div className="tp-header-category tp-category-menu tp-header-category-toggle">
                       <button
-                        onClick={() => setIsCategoryActive(!isCategoryActive)}
+                        // onClick={() => setIsCategoryActive(!isCategoryActive)}
                         className="tp-category-menu-btn tp-category-menu-toggle"
                       >
-                        <span>
+                        {/* <span>
                           <CategoryMenu />
-                        </span>
-                        All Departments
+                        </span> */}
+                        {/* All Fashion */}Fashion | JUTE BAGS &nbsp;&nbsp;
                       </button>
                       <nav className="tp-category-menu-content">
-                        <HeaderCategory categoryType="electronics" isCategoryActive={isCategoryActive} />
+                        <HeaderCategory categoryType="fashon" isCategoryActive={isCategoryActive} />
                       </nav>
                     </div>
                     {/* category end */}
@@ -110,9 +110,9 @@ const Header = () => {
                         </span>
                       </div>
                       <div className="tp-header-contact-content">
-                        <h5>Hotline:</h5>
+                        <h5>Phone No:</h5>
                         <p>
-                          <a href="tel:402-763-282-46">+91 9226740297</a>
+                        <a href="tel:402-763-282-46">+91 9226740297</a>
                         </p>
                       </div>
                     </div>
