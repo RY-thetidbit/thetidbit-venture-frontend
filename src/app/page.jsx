@@ -4,6 +4,7 @@ import HomeHeroSlider from "@/components/hero-banner/home-hero-slider";
 import BannerArea from "@/components/banner/banner-area";
 import BlogArea from "@/components/blog/electronic/blog-area";
 import ElectronicCategory from "@/components/categories/electronic-category";
+import FashionCategory from "@/components/categories/fashion-category";
 import CtaArea from "@/components/cta/cta-area";
 import FeatureArea from "@/components/features/feature-area";
 import InstagramArea from "@/components/instagram/instagram-area";
@@ -21,18 +22,20 @@ export default function HomePage() {
     <Wrapper>
       <Header/>
       <HomeHeroSlider/>
-      <ElectronicCategory/>
+      {/* <ElectronicCategory/> */}
+      {/* <FashionCategory/> */}
+      <div style={{marginTop: "60px"}}></div>
       <FeatureArea/>
       <ProductArea/>
-      {/* <BannerArea/>
-      <OfferProducts/>
-      <ProductGadgetArea/>
-      <ProductBanner/>
-       <NewArrivals/>
-      <ProductSmArea/>
-      <BlogArea/>
-      <InstagramArea/>
-      <CtaArea/> */}
+      {/* <BannerArea/> */}
+      {/* <OfferProducts/> */}
+      {/* <ProductGadgetArea/> */}
+      {/* <ProductBanner/> */}
+       {/* <NewArrivals/> */}
+      {/* <ProductSmArea/> */}
+      {/* <BlogArea/> */}
+      {/* <InstagramArea/> */}
+      {/* <CtaArea/>  */}
       <Footer/>
     </Wrapper>
   )

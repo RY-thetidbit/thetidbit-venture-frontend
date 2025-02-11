@@ -8,7 +8,8 @@ import amazonLogo from "@assets/img/amazon-available (1).png";
 import flipkartLogo from "@assets/img/flipkart.png";
 const {currency} =  config
 
-const AmazonImage = ()=><Link href={`https://www.amazon.in/s?me=A141FX4CK0KAZ4&marketplaceID=A21TJRUUN4KGV&ref=v_sp_carousel_all_asins`}>
+// const AmazonImage = ()=><Link href={`https://www.amazon.in/s?me=A141FX4CK0KAZ4&marketplaceID=A21TJRUUN4KGV&ref=v_sp_carousel_all_asins`}>
+const AmazonImage = ()=><Link href={`#`}>
 <Image
   src={amazonLogo}
   width="0"
@@ -19,7 +20,8 @@ const AmazonImage = ()=><Link href={`https://www.amazon.in/s?me=A141FX4CK0KAZ4&m
 />
 </Link>
 
-const FlipkartImage = ()=><Link href={`https://www.amazon.in/s?me=A141FX4CK0KAZ4&marketplaceID=A21TJRUUN4KGV&ref=v_sp_carousel_all_asins`}>
+// const FlipkartImage = ()=><Link href={`https://www.amazon.in/s?me=A141FX4CK0KAZ4&marketplaceID=A21TJRUUN4KGV&ref=v_sp_carousel_all_asins`}>
+const FlipkartImage = ()=><Link href={`#`}>
 <Image
   src={flipkartLogo}
   width="0"

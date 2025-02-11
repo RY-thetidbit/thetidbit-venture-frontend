@@ -6,7 +6,8 @@ import ProductItem from "./product-item";
 import ErrorMsg from "@/components/common/error-msg";
 import HomePrdLoader from "@/components/loader/home/home-prd-loader";
 
-const tabs = ["new", "featured", "topSellers"];
+const tabs = ["new", "topSellers"];
+// const tabs = ["new", "featured", "topSellers"];
 
 const ProductArea = () => {
   const [activeTab, setActiveTab] = useState("new");

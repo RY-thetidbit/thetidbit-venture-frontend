@@ -90,7 +90,7 @@ const Header = () => {
                         {/* All Fashion */}Fashion | JUTE BAGS &nbsp;&nbsp;
                       </button>
                       <nav className="tp-category-menu-content">
-                        <HeaderCategory categoryType="fashon" isCategoryActive={isCategoryActive} />
+                        <HeaderCategory categoryType="fashion" isCategoryActive={isCategoryActive} />
                       </nav>
                     </div>
                     {/* category end */}

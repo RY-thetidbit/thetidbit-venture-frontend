@@ -16,7 +16,7 @@ import gadget_girl from '@assets/img/product/gadget/gadget-girl.png';
 import HomeGadgetPrdLoader from '@/components/loader/home/home-gadget-prd-loader';
 
 const ProductGadgetArea = () => {
-  const { data: products, isError, isLoading } = useGetProductTypeQuery({type:'electronics'});
+  const { data: products, isError, isLoading } = useGetProductTypeQuery({type:'fashion'});
 
   // decide what to render
   let content = null;

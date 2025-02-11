@@ -27,7 +27,7 @@ const RefundPolicy = () => {
 
       <h2>2. Refund Processing Timeframe</h2>
       <ul>
-        <li>Refunds will be issued to the original payment method within 7-10 business days after approval.</li>
+        <li>Refunds will be creditedto the original payment method within 7-10 business days after approval.</li>
         <li>Shipping charges (if any) are non-refundable.</li>
       </ul>
 
