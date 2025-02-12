@@ -21,6 +21,7 @@ const BlogPostboxArea = () => {
     setPageStart(startPage);
     setCountOfPage(pageCount);
   };
+  console.log("filteredRows", blog_items,filteredRows);
   return (
     <>
       <section className="tp-postbox-area pt-120 pb-120">

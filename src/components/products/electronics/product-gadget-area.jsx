@@ -85,7 +85,7 @@ const ProductGadgetArea = () => {
                   <div className="tp-product-gadget-thumb">
                     <Image src={gadget_girl} alt="gadget_girl img" priority />
                   </div>
-                  <h3 className="tp-product-gadget-categories-title">Women's <br /> Bags</h3>
+                  <h3 className="tp-product-gadget-categories-title">Women&apos;s <br /> Bags</h3>
 
                   <div className="tp-product-gadget-categories-list">
                     <PrdCategoryList />

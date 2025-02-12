@@ -13,7 +13,7 @@ const menu_data = [
     home_pages: [
       // {
       //   img: home_1,
-      //   title: 'Electronics',
+      //   title: 'Women Bags',
       //   link: '/'
       // },
       // {
@@ -104,11 +104,11 @@ const menu_data = [
   //   title: 'Blog',
   //   link: '/blog',
   //   sub_menus: [
-  //     { title: 'Blog Standard', link: '/blog' },
-  //     { title: 'Blog Grid', link: '/blog-grid' },
-  //     { title: 'Blog List', link: '/blog-list' },
-  //     { title: 'Blog Details', link: '/blog-details' },
-  //     { title: 'Blog Details Full Width', link: '/blog-details-2' },
+  //     { title: 'Fashion', link: '/blog' },
+  //     // { title: 'Blog Grid', link: '/blog-grid' },
+  //     // { title: 'Blog List', link: '/blog-list' },
+  //     // { title: 'Blog Details', link: '/blog-details' },
+  //     // { title: 'Blog Details Full Width', link: '/blog-details-2' },
   //   ]
   // },
   {
@@ -194,23 +194,23 @@ export const mobile_menu = [
   //     { title: '404 Error', link: '/404' },
   //   ],
   // },
-  {
-    id: 3,
-    single_link: true,
-    title: 'Coupons',
-    link: '/coupon',
-  },
+  // {
+  //   id: 3,
+  //   single_link: true,
+  //   title: 'Coupons',
+  //   link: '/coupon',
+  // },
   // {
   //   id: 5,
   //   sub_menu: true,
   //   title: 'Blog',
   //   link: '/blog',
   //   sub_menus: [
-  //     { title: 'Blog Standard', link: '/blog' },
-  //     { title: 'Blog Grid', link: '/blog-grid' },
-  //     { title: 'Blog List', link: '/blog-list' },
-  //     { title: 'Blog Details', link: '/blog-details' },
-  //     { title: 'Blog Details Full Width', link: '/blog-details-2' },
+  //     { title: 'Fashion', link: '/blog' },
+  //     // { title: 'Blog Grid', link: '/blog-grid' },
+  //     // { title: 'Blog List', link: '/blog-list' },
+  //     // { title: 'Blog Details', link: '/blog-details' },
+  //     // { title: 'Blog Details Full Width', link: '/blog-details-2' },
   //   ]
   // },
   {

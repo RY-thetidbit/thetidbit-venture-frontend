@@ -87,7 +87,7 @@ const Header = () => {
                         {/* <span>
                           <CategoryMenu />
                         </span> */}
-                        {/* All Fashion */}Fashion | JUTE BAGS &nbsp;&nbsp;
+                        {/* All Fashion */}FASHION | JUTE BAGS &nbsp;&nbsp;
                       </button>
                       <nav className="tp-category-menu-content">
                         <HeaderCategory categoryType="fashion" isCategoryActive={isCategoryActive} />

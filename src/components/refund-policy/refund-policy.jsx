@@ -34,7 +34,7 @@ const RefundPolicy = () => {
       <h2>3. Damaged or Defective Products</h2>
       <ul>
         <li>If the product received is defective or damaged, customers must report it within 48 hours of delivery.</li>
-        <li>We may require photo proof of the damage before processing a replacement or refund.</li>
+        <li>We may require photo proof of the damage within 48 hours of delivery before processing a replacement or refund And the replacement for the same will be provided within 7 days after approval.</li>
       </ul>
 
       <h2>4. Contact Information</h2>

@@ -46,7 +46,7 @@ const BannerArea = () => {
         bg={banner_1} // Replace with your women's bag banner image
         title={
           <>
-            Discover Our <br /> Women's Bag Collection
+            Discover Our <br /> Women&apos;s Bag Collection
           </>
         }
       />

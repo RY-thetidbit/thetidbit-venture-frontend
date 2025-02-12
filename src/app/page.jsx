@@ -33,7 +33,7 @@ export default function HomePage() {
       <ProductBanner/>
        <NewArrivals/>
       <ProductSmArea/>
-      <BlogArea/>
+      {/* <BlogArea/> */}
       <InstagramArea/>
       <CtaArea/> 
       <Footer/>

@@ -56,7 +56,7 @@ const blogData = [
     comments: 2,
     sm_desc: "Discover the top 5 women's bags that blend functionality with elegance, perfect for daily wear.",
     desc: "## Top 5 Must-Haves\n1. **The Classic Tote:** Spacious yet chic for work and play.\n2. **The Sleek Crossbody:** Ideal for a hands-free, stylish look.\n3. **The Minimalist Clutch:** Perfect for evening outings.\n4. **The Eco-Friendly Bag:** Sustainable and trendy.\n5. **The Convertible Backpack:** Combining comfort with modern design.\n\n## Final Thoughts\nEach bag offers a unique blend of style and utility, ensuring you're prepared for any occasion.",
-    blog: "fashion"
+    blog: "blog-postbox"
   },
   {
     id: 3,
@@ -82,7 +82,7 @@ const blogData = [
     comments: 1,
     sm_desc: "Tips and tricks on selecting the ideal women's bag to complement any outfit or event.",
     desc: "## Choosing Your Companion\nThe right bag can transform any look. When selecting your bag, consider:\n\n- **Purpose:** Is it for daily use, work, or special occasions?\n- **Size & Capacity:** What essentials do you need to carry?\n- **Material & Maintenance:** Evaluate durability and care requirements.\n\n## Expert Tips\nExperiment with different styles until you find the one that resonates with your personal aesthetic.",
-    blog: "fashion"
+    blog: "blog-postbox"
   },
   {
     id: 5,
@@ -108,7 +108,7 @@ const blogData = [
     comments: 4,
     sm_desc: "A historical look at how women's bags have transformed from basic necessity to luxurious fashion statements.",
     desc: "## A Journey Through Time\nFrom modest pouches to designer masterpieces, women's bags have undergone a remarkable transformation. This post explores key milestones and cultural influences that have shaped their evolution.\n\n## Key Eras\n- **Early 1900s:** Simple, functional designs.\n- **Swinging 60s:** Bold, experimental aesthetics.\n- **Modern Era:** A blend of heritage and innovation.\n\n## Final Thoughts\nUnderstanding the evolution of bags enhances our appreciation for their artistry and functionality.",
-    blog: "fashion"
+    blog: "blog-postbox"
   },
   {
     id: 7,
@@ -121,7 +121,7 @@ const blogData = [
     comments: 3,
     sm_desc: "A comprehensive comparison of high-end designer bags and their affordable alternatives.",
     desc: "## The Great Debate\nDesigner bags are celebrated for their craftsmanship and prestige, yet affordable alternatives have made impressive strides. Weigh the pros and cons of each to decide which fits your style and budget.\n\n## Comparison Points\n- **Quality & Craftsmanship**\n- **Price & Value**\n- **Longevity & Maintenance**\n\n## Conclusion\nWhether you lean toward luxury or affordability, choose a bag that aligns with your lifestyle and aesthetic.",
-    blog: "fashion"
+    blog: "blog-postbox"
   },
   {
     id: 8,
@@ -134,7 +134,7 @@ const blogData = [
     comments: 2,
     sm_desc: "Discover the charm of vintage women's bags and how they're making a stylish comeback today.",
     desc: "## Vintage Vibes\nVintage bags offer a unique charm that contemporary styles sometimes miss. Learn how to integrate these timeless pieces into your wardrobe without compromising modern flair.\n\n## Styling Tips\n- **Mix Old with New:** Pair vintage bags with modern outfits.\n- **Make It a Focal Point:** Let your bag be the statement piece of your look.\n\n## Wrap-Up\nVintage bags are more than relics—they celebrate enduring style and sophistication.",
-    blog: "fashion"
+    blog: "blog-postbox"
   },
   {
     id: 9,
@@ -146,7 +146,7 @@ const blogData = [
     comments: 4,
     sm_desc: "Discover which women's bags combine durability, style, and functionality for all your travel adventures.",
     desc: "## Travel-Ready Designs\nWhen you travel, your bag should be both practical and fashionable. Discover bags that offer secure compartments, lightweight designs, and chic aesthetics—perfect for the modern traveler.\n\n## Our Top Picks\n- **Convertible Backpacks:** For versatile use\n- **Expandable Totes:** Extra space without sacrificing style\n\n## Conclusion\nChoose a travel bag that meets your needs while keeping you effortlessly stylish.",
-    blog: "fashion"
+    blog: "blog-postbox"
   },
   {
     id: 10,
@@ -158,7 +158,7 @@ const blogData = [
     comments: 6,
     sm_desc: "Explore versatile women's bags that seamlessly transition from office chic to evening elegance.",
     desc: "## Versatility at Its Best\nModern women need bags that can keep up with every aspect of their busy lives. Whether you're heading to a boardroom meeting or a night out, discover bags that blend functionality with style.\n\n## Key Features\n- **Multiple Compartments:** For optimal organization\n- **Sleek Designs:** To complement any outfit\n\n## Final Thoughts\nInvest in a versatile bag that’s as dynamic as your lifestyle.",
-    blog: "fashion"
+    blog: "blog-postbox"
   },
   {
     id: 11,
@@ -172,7 +172,7 @@ const blogData = [
     comments: 3,
     sm_desc: "Learn how to perfectly accessorize your outfit with the right women's bag to elevate your look.",
     desc: "## Accessory Essentials\nA well-chosen bag can tie your entire outfit together. In this post, discover expert tips on how to match your bag with your overall style:\n\n- **Color Coordination:** Harmonize or contrast with your outfit\n- **Proportion Play:** Balance the size of your bag with your attire\n\n## Wrap-Up\nA stylish bag is the ultimate accessory—make sure it stands out!",
-    blog: "fashion"
+    blog: "blog-postbox"
   },
   {
     id: 12,
@@ -186,7 +186,7 @@ const blogData = [
     comments: 5,
     sm_desc: "Discover how technology is reshaping the design of women's bags—from smart compartments to integrated charging ports.",
     desc: "## Tech Meets Fashion\nInnovative designers are now integrating technology into women's bags. Imagine a bag that can charge your phone, track your essentials, or even change its look with a tap!\n\n## Innovations to Watch\n- **Built-in Chargers**\n- **Smart Compartments** for effortless organization\n\n## Conclusion\nStay ahead of the curve with these futuristic designs that merge tech with timeless style.",
-    blog: "fashion"
+    blog: "blog-grid"
   },
   {
     id: 13,
@@ -200,7 +200,7 @@ const blogData = [
     comments: 7,
     sm_desc: "Explore the transformative power of a statement bag and how it can elevate any outfit.",
     desc: "## Make a Statement\nA statement bag is more than an accessory—it’s a form of self-expression. Discover why a bold, unique bag can redefine your style and boost your confidence.\n\n## Key Points\n- **Bold Designs:** That capture attention\n- **Versatility:** Easily dress it up or down\n\n## Final Thoughts\nInvest in a statement bag and let your style speak volumes.",
-    blog: "fashion"
+    blog: "blog-grid"
   },
   {
     id: 14,
@@ -214,7 +214,7 @@ const blogData = [
     comments: 2,
     sm_desc: "Keep your favorite bags looking pristine with these essential care and maintenance tips.",
     desc: "## Bag Care Basics\nProper care can extend the life of your women's bags. This guide covers cleaning, storage, and repair tips for various materials.\n\n## Care Tips\n- **Regular Cleaning:** Use the right products for your bag's material.\n- **Proper Storage:** Keep bags in dust bags or boxes to prevent damage.\n\n## Conclusion\nWith a little care, your bag will remain a cherished accessory for years to come.",
-    blog: "fashion"
+    blog: "blog-grid"
   },
   {
     id: 15,
@@ -228,7 +228,7 @@ const blogData = [
     comments: 4,
     sm_desc: "Update your wardrobe with the hottest women's bag trends for spring and summer 2025.",
     desc: "## Seasonal Refresh\nAs the seasons change, so do the trends. Discover vibrant colors, lightweight designs, and playful patterns perfect for spring and summer.\n\n## Trend Highlights\n- **Bold Colors:** To brighten up your look\n- **Compact Designs:** For a breezy, effortless style\n\n## Final Thoughts\nEmbrace the season with a bag that captures the spirit of spring and summer.",
-    blog: "fashion"
+    blog: "blog-grid"
   },
   {
     id: 16,
@@ -242,7 +242,7 @@ const blogData = [
     comments: 3,
     sm_desc: "Discover elegant clutches that are the perfect finishing touch for your evening ensemble.",
     desc: "## Evening Elegance\nFor nights out, a clutch exudes sophistication. Learn how to choose a clutch that elevates your evening look.\n\n## What to Look For\n- **Compact Design:** Just enough space for essentials\n- **Luxurious Materials:** Satin, velvet, or embellished finishes\n\n## Conclusion\nElevate your night-out style with a clutch that’s both chic and practical.",
-    blog: "fashion"
+    blog: "blog-grid"
   },
   {
     id: 17,
@@ -256,7 +256,7 @@ const blogData = [
     comments: 1,
     sm_desc: "Learn innovative hacks to organize your bag and keep your essentials neatly arranged.",
     desc: "## Organized & On-Trend\nA well-organized bag saves time and stress. Here are some practical hacks:\n\n- **Use Pouches:** To sort smaller items\n- **Designate Zones:** Separate compartments for tech, cosmetics, and personal items\n\n## Final Tips\nFind the system that works best for you and enjoy a clutter-free bag.",
-    blog: "fashion"
+    blog: "blog-grid"
   },
   {
     id: 18,
@@ -270,7 +270,7 @@ const blogData = [
     comments: 6,
     sm_desc: "Explore the fascinating evolution of women's bags—from everyday necessity to coveted luxury accessories.",
     desc: "## A Look Back in Time\nWomen's bags have evolved dramatically. This post examines key eras that transformed bags from simple utility items into symbols of luxury and style.\n\n## Historical Milestones\n- **Early Practicality:** Simple and functional designs\n- **The Luxury Boom:** Designer craftsmanship redefined the accessory\n\n## Conclusion\nUnderstanding this evolution offers insights into today’s trends and innovations.",
-    blog: "fashion"
+    blog: "blog-grid"
   },
   {
     id: 19,
@@ -284,9 +284,10 @@ const blogData = [
     comments: 8,
     sm_desc: "A roundup of the most buzz-worthy women's bags that are taking social media by storm.",
     desc: "## Social Media Sensations\nFrom Instagram to TikTok, certain women's bags have gone viral for their unique designs and functionality. Here's a look at the bags that are trending online:\n\n## What’s Hot\n- **Innovative Designs:** Unique shapes and standout features\n- **Celebrity Endorsements:** Bags favored by trendsetters\n\n## Final Thoughts\nStay updated with the latest trends by following what’s hot on social media.",
-    blog: "fashion"
+    blog: "blog-grid"
   }
 ];
+
 
 
 export default blogData;

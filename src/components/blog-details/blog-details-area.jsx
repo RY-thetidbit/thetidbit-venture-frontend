@@ -71,7 +71,7 @@ const BlogDetailsArea = ({blog}) => {
                 </div>
                 <p>Rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer cidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae lorem.</p>
 
-                <div className="tp-postbox-details-share-wrapper">
+                {/* <div className="tp-postbox-details-share-wrapper">
                   <div className="row">
                     <div className="col-xl-8 col-lg-6">
                       <div className="tp-postbox-details-tags tagcloud">
@@ -93,29 +93,29 @@ const BlogDetailsArea = ({blog}) => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
 
                 {/* PostboxDetailsNav */}
-                <PostboxDetailsNav />
+                {/* <PostboxDetailsNav /> */}
                 {/* PostboxDetailsNav */}
 
                 {/* author details start */}
-                <BlogDetailsAuthor />
+                {/* <BlogDetailsAuthor /> */}
                 {/* author details end */}
 
-                <div className="tp-postbox-details-comment-wrapper">
-                  <h3 className="tp-postbox-details-comment-title">Comments ({comment_data.length})</h3>
+                {/* <div className="tp-postbox-details-comment-wrapper"> */}
+                  {/* <h3 className="tp-postbox-details-comment-title">Comments ({comment_data.length})</h3> */}
                   {/* BlogDetailsComments */}
-                  <BlogDetailsComments />
+                  {/* <BlogDetailsComments /> */}
                   {/* BlogDetailsComments */}
-                </div>
+                {/* </div> */}
 
                 <div className="tp-postbox-details-form">
-                  <h3 className="tp-postbox-details-form-title">Leave a Reply</h3>
-                  <p>Your email address will not be published. Required fields are marked *</p>
+                  {/* <h3 className="tp-postbox-details-form-title">Leave a Reply</h3> */}
+                  {/* <p>Your email address will not be published. Required fields are marked *</p> */}
 
                   {/* form start */}
-                  <BlogPostCommentForm />
+                  {/* <BlogPostCommentForm /> */}
                   {/* form end */}
                 </div>
               </div>

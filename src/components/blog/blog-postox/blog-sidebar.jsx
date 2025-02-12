@@ -15,7 +15,7 @@ const BlogSidebar = () => {
   return (
     <>
       <div className="tp-sidebar-wrapper tp-sidebar-ml--24">
-        <div className="tp-sidebar-widget mb-35">
+        {/* <div className="tp-sidebar-widget mb-35">
           <div className="tp-sidebar-search">
             <form action="#">
               <div className="tp-sidebar-search-input">
@@ -26,7 +26,7 @@ const BlogSidebar = () => {
               </div>
             </form>
           </div>
-        </div>
+        </div> */}
 
         {/* about  */}
         <div className="tp-sidebar-widget mb-35">
