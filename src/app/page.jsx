@@ -25,7 +25,7 @@ export default function HomePage() {
       {/* <ElectronicCategory/> */}
       {/* <FashionCategory/> */}
       <div style={{marginTop: "60px"}}></div>
-      <FeatureArea/>
+      {/* <FeatureArea/> */}
       <ProductArea/>
       <BannerArea/>
       <OfferProducts/>
