@@ -32,7 +32,7 @@ export default function HomePage() {
       <ProductGadgetArea/>
       <ProductBanner/>
        <NewArrivals/>
-      <ProductSmArea/>
+      {/* <ProductSmArea/> */}
       {/* <BlogArea/> */}
       <InstagramArea/>
       <CtaArea/> 
