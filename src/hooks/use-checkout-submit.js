@@ -22,7 +22,7 @@ const useCheckoutSubmit = () => {
   // addOrder
   const [saveOrder, {}] = useSaveOrderMutation();
   // createPaymentIntent
-  const [createPaymentIntent, {}] = useCreatePaymentIntentMutation();
+  // const [createPaymentIntent, {}] = useCreatePaymentIntentMutation();
   // cart_products
   const { cart_products } = useSelector((state) => state.cart);
   // user
@@ -112,19 +112,19 @@ const useCheckoutSubmit = () => {
   ]);
 
   // create payment intent
-  useEffect(() => {
-    if (cartTotal) {
-      createPaymentIntent({
-        price: parseInt(cartTotal),
-      })
-        .then((data) => {
-          setClientSecret(data?.data?.clientSecret);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, [createPaymentIntent, cartTotal]);
+  // useEffect(() => {
+  //   if (cartTotal) {
+  //     createPaymentIntent({
+  //       price: parseInt(cartTotal),
+  //     })
+  //       .then((data) => {
+  //         setClientSecret(data?.data?.clientSecret);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   }
+  // }, [createPaymentIntent, cartTotal]);
 
   // handleCouponCode
   const handleCouponCode = (e) => {
