@@ -84,7 +84,7 @@ const BlogDetailsArea = ({ blog }) => {
 
                 {/* Suggestion 1 */}
                 <p>
-                  <strong>Suggestion 1: Embrace Sustainable Practices.</strong> In today's market, eco-friendly practices are more than just a trend—they're a necessity. Adopting sustainable materials and ethical production processes not only enhances your brand reputation but also attracts environmentally conscious consumers.
+                  <strong>Suggestion 1: Embrace Sustainable Practices.</strong> In today&apos;s market, eco-friendly practices are more than just a trend—they&apos;re a necessity. Adopting sustainable materials and ethical production processes not only enhances your brand reputation but also attracts environmentally conscious consumers.
                 </p>
                 <div>
                   <a href="https://cdn.pixabay.com/photo/2016/10/25/12/28/seedlings-1769334_1280.jpg" target="_blank" rel="noopener noreferrer">
@@ -94,7 +94,7 @@ const BlogDetailsArea = ({ blog }) => {
 
                 {/* Suggestion 2 */}
                 <p>
-                  <strong>Suggestion 2: Integrate Technology Seamlessly.</strong> Leverage cutting-edge technology to streamline operations and improve the customer experience. Whether it's through AI-driven analytics or smart product features, technology can drive both efficiency and innovation in your business.
+                  <strong>Suggestion 2: Integrate Technology Seamlessly.</strong> Leverage cutting-edge technology to streamline operations and improve the customer experience. Whether it&apos;s through AI-driven analytics or smart product features, technology can drive both efficiency and innovation in your business.
                 </p>
                 <div>
                   <a href="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" target="_blank" rel="noopener noreferrer">
@@ -134,7 +134,7 @@ const BlogDetailsArea = ({ blog }) => {
 
                 {/* Conclusion */}
                 <p>
-                  <strong>Conclusion:</strong> By implementing these strategic suggestions, you can transform your business operations, strengthen customer relationships, and build a sustainable competitive edge. Embracing innovation while staying true to ethical practices will not only enhance your brand's reputation but also secure its future growth in an ever-evolving market.
+                  <strong>Conclusion:</strong> By implementing these strategic suggestions, you can transform your business operations, strengthen customer relationships, and build a sustainable competitive edge. Embracing innovation while staying true to ethical practices will not only enhance your brand&apos;s reputation but also secure its future growth in an ever-evolving market.
                 </p>
               </div>
             </div>
