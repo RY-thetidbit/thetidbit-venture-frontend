@@ -310,9 +310,10 @@ const useCheckoutSubmit = () => {
   const handlePaymentWithPhonePay = async (order) => {
     try {
 
-      const response = await createPaymentIntentPhonePay(order);
-      console.log("paymentIntentData:",response);
-      const redirect=response.response.data.instrumentResponse.redirectInfo.url;
+      const resData = await createPaymentIntentPhonePay(order);
+      console.log("paymentIntentData:",resData);
+      console.log("response:",resData.response.redirectUrl);
+      const redirect=resData.response.redirectUrl;
       console.log("redirect",redirect)
       router.push(redirect)
 
