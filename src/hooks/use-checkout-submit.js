@@ -309,7 +309,7 @@ const useCheckoutSubmit = () => {
 
   const handlePaymentWithPhonePay = async (order) => {
     try {
-      order.totalAmount=1;
+      // order.totalAmount=1;
       const resData = await createPaymentIntentPhonePay(order);
       console.log("paymentIntentData:",resData);
       console.log("response:",resData.response.redirectUrl);
