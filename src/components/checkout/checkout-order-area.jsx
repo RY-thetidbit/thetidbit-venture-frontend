@@ -153,7 +153,7 @@ const CheckoutOrderArea = ({ checkoutData }) => {
           <ErrorMsg msg={errors?.payment?.message} />
         </div> */}
         {/* PHONEPAY INTEGRATION */}
-        <div className="tp-checkout-payment-item">
+        <div className="tp-checkout-payment-item phonepay-option">
           <input
             {...register(`payment`, {
               required: `Payment Option is required!`,
@@ -164,10 +164,20 @@ const CheckoutOrderArea = ({ checkoutData }) => {
             name="payment"
             value="Phonepay"
           />
-          <label htmlFor="phonepay">Phone Pay</label>
+          <label htmlFor="phonepay" className="phonepay-label">
+            <div className="payment-method-content">
+              <div className="payment-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48">
+                  <path fill="#4527a0" d="M42,37c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5V37z"></path>
+                  <path fill="#fff" d="M32.267,20.171c0-0.681-0.584-1.264-1.264-1.264h-2.334l-5.35-6.25c-0.486-0.584-1.264-0.778-2.043-0.584l-1.848,0.584c-0.292,0.097-0.389,0.486-0.195,0.681l5.836,5.666h-8.851c-0.292,0-0.486,0.195-0.486,0.486v0.973c0,0.681,0.584,1.506,1.264,1.506h1.972v4.305c0,3.502,1.611,5.544,4.723,5.544c0.973,0,1.378-0.097,2.35-0.486v3.112c0,0.875,0.681,1.556,1.556,1.556h0.786c0.292,0,0.584-0.292,0.584-0.584V21.969h2.812c0.292,0,0.486-0.195,0.486-0.486V20.171z M26.043,28.413c-0.584,0.292-1.362,0.389-1.945,0.389c-1.556,0-2.097-0.778-2.097-2.529v-4.305h4.043V28.413z"></path>
+                </svg>
+              </div>
+              <span className="payment-method-name">PhonePe</span>
+            </div>
+          </label>
           <ErrorMsg msg={errors?.payment?.message} />
         </div>
-        <div className="tp-checkout-payment-item">
+        {/* <div className="tp-checkout-payment-item">
           <input
             {...register(`payment`, {
               required: `Payment Option is required!`,
@@ -180,16 +190,36 @@ const CheckoutOrderArea = ({ checkoutData }) => {
           />
           <label htmlFor="cod">Cash on Delivery</label>
           <ErrorMsg msg={errors?.payment?.message} />
-        </div>
+        </div> */}
       </div>
 
       <div className="tp-checkout-btn-wrapper">
+        <div className="checkout-info-message">
+          {isCheckoutSubmit ? (
+            <p className="processing-message">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="loading-spinner">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 6v6l4 2"></path>
+              </svg>
+              Processing your payment, please wait...
+            </p>
+          ) : (
+            <p className="instruction-message">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              Click once and wait for payment to process
+            </p>
+          )}
+        </div>
         <button
           type="submit"
           disabled={!stripe || isCheckoutSubmit}
           className="tp-checkout-btn w-100"
         >
-          Place Order
+          {isCheckoutSubmit ? 'Processing...' : 'Place Order'}
         </button>
       </div>
     </div>
