@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Wand2, Download, Share2, ChevronDown, ChevronUp, MessageSquare, Image as ImageIcon, Upload } from "lucide-react";
+import { Wand2, Download, Share2, ChevronDown, ChevronUp, MessageSquare, Image as ImageIcon, Upload, X } from "lucide-react";
 import Image from "next/image";
 import axios from "axios";
 
@@ -15,10 +15,11 @@ export default function ChatAndImageGenerator() {
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPrompts, setShowPrompts] = useState(false);
-  const [isImageMode, setIsImageMode] = useState(false); // Default to chat
-  const [isUploadMode, setIsUploadMode] = useState(false);
+  const [isImageMode, setIsImageMode] = useState(false);
+  const [isUploadMode, setIsUploadMode] = useState(true); // Set default to upload
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
-  const [uploading, setUploading] = useState(false); // New state for upload loader
+  const [uploading, setUploading] = useState(false);
+  const [uploadDisabled, setUploadDisabled] = useState(false); // New state to disable upload
   const messagesEndRef = useRef(null);
 
   // API keys (ideally, these should be stored securely on a backend)
@@ -269,6 +270,7 @@ export default function ChatAndImageGenerator() {
           imageUrl: ghibliImageUrl,
           revisedPrompt
         }));
+        setUploadDisabled(false); // Re-enable upload after image generation
       }
     } catch (error) {
       console.error("Error generating image:", error);
@@ -278,21 +280,23 @@ export default function ChatAndImageGenerator() {
         role: "assistant",
         content: "Sorry, I couldn't generate the image. Please try again with a different image."
       }));
+      setUploadDisabled(false); // Re-enable upload in case of error
     } finally {
       setLoading(false);
     }
   };
 
   const toggleMode = (mode) => {
-    setIsImageMode(mode === 'image');
     setIsUploadMode(mode === 'upload');
+    setIsImageMode(mode === 'image');
     setUploadedImageUrl(""); // Clear uploaded image URL
+    setUploadDisabled(false); // Enable upload when mode changes
     // Clear previous context and set new system message
     let systemMessage = "";
-    if (mode === 'image') {
-      systemMessage = "I'm now in Ghibli image generation mode. Describe the image you'd like to create!";
-    } else if (mode === 'upload') {
+    if (mode === 'upload') {
       systemMessage = "I'm now in Upload & Ghibli-fy mode. Upload an image to get started!";
+    } else if (mode === 'image') {
+      systemMessage = "I'm now in Ghibli image generation mode. Describe the image you'd like to create!";
     } else {
       systemMessage = "I'm now in text chat mode. Ask me anything!";
     }
@@ -310,6 +314,7 @@ export default function ChatAndImageGenerator() {
 
     setUploading(true); // Start upload loader
     setUploadedImageUrl(""); // Clear previous image
+    setUploadDisabled(true); // Disable upload after image is selected
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
@@ -322,7 +327,14 @@ export default function ChatAndImageGenerator() {
 
       const imageUrl = response.data.secure_url;
       setUploadedImageUrl(imageUrl);
-      // alert("Image uploaded successfully!");
+
+      // Add the uploaded image to the messages
+      setMessages(prev => [...prev, {
+        role: "user",
+        content: "Uploaded image:",
+        imageUrl: imageUrl
+      }]);
+
       setUploading(false); // Stop upload loader
       handleUploadAndGhibliFy(imageUrl); // Directly start Ghibli-fy process
     } catch (error) {
@@ -330,8 +342,21 @@ export default function ChatAndImageGenerator() {
       alert("Error uploading image. Please try again.");
       setUploading(false); // Stop upload loader in case of error
       setLoading(false); // Ensure loading is false in case of error
+      setUploadDisabled(false); // Re-enable upload in case of error
     }
   };
+
+  const clearUploadedImage = () => {
+    setUploadedImageUrl("");
+    setUploadDisabled(false); // Re-enable upload
+    setMessages(prevMessages => prevMessages.filter(msg => msg.role !== "user" || !msg.imageUrl)); // Remove user image from chat
+  };
+
+  useEffect(() => {
+    if (isUploadMode) {
+      toggleMode('upload');
+    }
+  }, [isUploadMode]);
 
   return (
     <div className="container-fluid px-0 px-sm-2 my-2 my-sm-4">
@@ -352,11 +377,11 @@ export default function ChatAndImageGenerator() {
               </p>
               <div className="d-flex justify-content-center align-items-center gap-2">
                 <button
-                  onClick={() => toggleMode('chat')}
-                  className={`btn btn-sm btn-outline-light d-flex align-items-center gap-1 ${!isImageMode && !isUploadMode ? 'active' : ''}`}
+                  onClick={() => toggleMode('upload')}
+                  className={`btn btn-sm btn-outline-light d-flex align-items-center gap-1 ${isUploadMode ? 'active' : ''}`}
                 >
-                  <MessageSquare size={16} />
-                  <span className="d-none d-sm-inline">Chat</span>
+                  <Upload size={16} />
+                  <span className="d-none d-sm-inline">Upload</span>
                 </button>
                 <button
                   onClick={() => toggleMode('image')}
@@ -366,11 +391,11 @@ export default function ChatAndImageGenerator() {
                   <span className="d-none d-sm-inline">Image</span>
                 </button>
                 <button
-                  onClick={() => toggleMode('upload')}
-                  className={`btn btn-sm btn-outline-light d-flex align-items-center gap-1 ${isUploadMode ? 'active' : ''}`}
+                  onClick={() => toggleMode('chat')}
+                  className={`btn btn-sm btn-outline-light d-flex align-items-center gap-1 ${!isImageMode && !isUploadMode ? 'active' : ''}`}
                 >
-                  <Upload size={16} />
-                  <span className="d-none d-sm-inline">Upload</span>
+                  <MessageSquare size={16} />
+                  <span className="d-none d-sm-inline">Chat</span>
                 </button>
               </div>
             </div>
@@ -466,13 +491,26 @@ export default function ChatAndImageGenerator() {
               <form onSubmit={handleSubmit}>
                 {isUploadMode ? (
                   <div>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleImageUpload}
-                      className="form-control mb-2"
-                      disabled={uploading || loading} // Disable input during upload or Ghibli-fying
-                    />
+                    <div className="d-flex align-items-center justify-content-between mb-2">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                        className="form-control"
+                        disabled={uploadDisabled || uploading || loading} // Disable input during upload or Ghibli-fying
+                      />
+                      {uploadedImageUrl && (
+                        <button
+                          type="button"
+                          onClick={clearUploadedImage}
+                          className="btn btn-outline-danger btn-sm d-flex align-items-center gap-1"
+                          disabled={uploading || loading}
+                        >
+                          <X size={16} />
+                          <span className="d-none d-sm-inline">Clear</span>
+                        </button>
+                      )}
+                    </div>
                     {uploading && (
                       <div className="d-flex align-items-center gap-2 mb-2">
                         <div className="spinner-border spinner-border-sm" role="status">
@@ -489,18 +527,6 @@ export default function ChatAndImageGenerator() {
                         <span>Analyzing image and generating Ghibli-style image...</span>
                       </div>
                     )}
-                    {uploadedImageUrl && (
-                      <div className="mt-2">
-                        <Image
-                          src={uploadedImageUrl}
-                          alt="Uploaded Image"
-                          width={200}
-                          height={200}
-                          className="img-fluid rounded"
-                        />
-                      </div>
-                    )}
-                    {/* Remove Ghibli-fy button */}
                   </div>
                 ) : (
                   <div className="mb-2 mb-sm-3">
