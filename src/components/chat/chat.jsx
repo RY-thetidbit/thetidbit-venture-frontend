@@ -4,6 +4,11 @@ import { useState, useRef, useEffect } from "react";
 import { Wand2, Download, Share2, ChevronDown, ChevronUp, MessageSquare, Image as ImageIcon, Upload, X } from "lucide-react";
 import Image from "next/image";
 import axios from "axios";
+import GhibliInfoSection from "./GhibliInfoSection";
+import HamsterLoader from "../shared/HamsterLoader";
+import Head from "next/head";
+import Script from "next/script";
+import ImageSlider from "../shared/ImageSlider";
 
 export default function ChatAndImageGenerator() {
   const [messages, setMessages] = useState([
@@ -21,6 +26,7 @@ export default function ChatAndImageGenerator() {
   const [uploading, setUploading] = useState(false);
   const [uploadDisabled, setUploadDisabled] = useState(false); // New state to disable upload
   const messagesEndRef = useRef(null);
+  const fileInputRef = useRef(null); // Add this ref for the file input
 
   // API keys (ideally, these should be stored securely on a backend)
   const OPENAI_API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
@@ -270,7 +276,13 @@ export default function ChatAndImageGenerator() {
           imageUrl: ghibliImageUrl,
           revisedPrompt
         }));
+        
+        // Clear uploaded image and file input after successful generation
         setUploadDisabled(false); // Re-enable upload after image generation
+        setUploadedImageUrl("");
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
       }
     } catch (error) {
       console.error("Error generating image:", error);
@@ -336,6 +348,12 @@ export default function ChatAndImageGenerator() {
       }]);
 
       setUploading(false); // Stop upload loader
+      
+      // Reset the file input immediately after successful upload
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+      
       handleUploadAndGhibliFy(imageUrl); // Directly start Ghibli-fy process
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -343,13 +361,12 @@ export default function ChatAndImageGenerator() {
       setUploading(false); // Stop upload loader in case of error
       setLoading(false); // Ensure loading is false in case of error
       setUploadDisabled(false); // Re-enable upload in case of error
+      
+      // Reset the file input in case of error too
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     }
-  };
-
-  const clearUploadedImage = () => {
-    setUploadedImageUrl("");
-    setUploadDisabled(false); // Re-enable upload
-    setMessages(prevMessages => prevMessages.filter(msg => msg.role !== "user" || !msg.imageUrl)); // Remove user image from chat
   };
 
   useEffect(() => {
@@ -358,8 +375,37 @@ export default function ChatAndImageGenerator() {
     }
   }, [isUploadMode]);
 
+  // Add this function to initialize ads when they should be displayed
+  const loadAds = () => {
+    if (window.adsbygoogle && typeof window.adsbygoogle.push === 'function') {
+      try {
+        window.adsbygoogle.push({});
+      } catch (e) {
+        console.error('AdSense error:', e);
+      }
+    }
+  };
+
+  // Call loadAds when component mounts and when messages change
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      loadAds();
+    }
+  }, [messages]);
+
   return (
     <div className="container-fluid px-0 px-sm-2 my-2 my-sm-4">
+      {/* Add Next.js Script component for AdSense */}
+      <Script
+        id="adsbygoogle-init"
+        strategy="afterInteractive"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9155008277126927"
+        crossOrigin="anonymous"
+        onLoad={() => {
+          loadAds();
+        }}
+      />
+
       <div className="row justify-content-center mx-0">
         <div className="col-12 col-md-10 col-lg-8 px-0 px-sm-2">
           <div className="card shadow border-0 rounded-0 rounded-sm-3">
@@ -403,6 +449,17 @@ export default function ChatAndImageGenerator() {
             {/* Messages Area */}
             <div className="card-body bg-light p-2 p-sm-3" style={{ height: "60vh", overflowY: "auto" }}>
               <div className="d-flex flex-column gap-3">
+                {/* Add an ad unit at the top of messages */}
+                <div className="ad-container w-100 text-center my-2">
+                  <ins className="adsbygoogle"
+                    style={{ display: 'block' }}
+                    data-ad-client="ca-pub-9155008277126927"
+                    data-ad-slot="1234567890" // Replace with your actual ad slot ID
+                    data-ad-format="auto"
+                    data-full-width-responsive="true">
+                  </ins>
+                </div>
+
                 {messages.map((message, index) => (
                   <div
                     key={index}
@@ -415,10 +472,8 @@ export default function ChatAndImageGenerator() {
                       style={{ maxWidth: "90%" }}
                     >
                       {message.isLoading ? (
-                        <div className="d-flex align-items-center gap-2">
-                          <div className="spinner-border spinner-border-sm" role="status">
-                            <span className="visually-hidden">Loading...</span>
-                          </div>
+                        <div className="message-loader">
+                          <HamsterLoader />
                           <span>{message.content}</span>
                         </div>
                       ) : (
@@ -482,6 +537,20 @@ export default function ChatAndImageGenerator() {
                     </div>
                   </div>
                 ))}
+
+                {/* Add another ad unit after a certain number of messages */}
+                {messages.length > 3 && (
+                  <div className="ad-container w-100 text-center my-2">
+                    <ins className="adsbygoogle"
+                      style={{ display: 'block' }}
+                      data-ad-client="ca-pub-9155008277126927"
+                      data-ad-slot="9876543210" // Replace with your actual ad slot ID
+                      data-ad-format="auto"
+                      data-full-width-responsive="true">
+                    </ins>
+                  </div>
+                )}
+
                 <div ref={messagesEndRef} />
               </div>
             </div>
@@ -492,38 +561,39 @@ export default function ChatAndImageGenerator() {
                 {isUploadMode ? (
                   <div>
                     <div className="d-flex align-items-center justify-content-between mb-2">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                        className="form-control"
-                        disabled={uploadDisabled || uploading || loading} // Disable input during upload or Ghibli-fying
-                      />
-                      {uploadedImageUrl && (
+                      <div className="input-group">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleImageUpload}
+                          className="form-control"
+                          disabled={uploadDisabled || uploading || loading}
+                          ref={fileInputRef}
+                        />
                         <button
                           type="button"
-                          onClick={clearUploadedImage}
-                          className="btn btn-outline-danger btn-sm d-flex align-items-center gap-1"
-                          disabled={uploading || loading}
+                          className="btn btn-outline-secondary"
+                          onClick={() => {
+                            if (fileInputRef.current) {
+                              fileInputRef.current.value = "";
+                            }
+                            setUploadedImageUrl("");
+                          }}
+                          disabled={uploadDisabled || uploading || loading}
                         >
-                          <X size={16} />
-                          <span className="d-none d-sm-inline">Clear</span>
+                          <X size={16} /> Clear
                         </button>
-                      )}
+                      </div>
                     </div>
                     {uploading && (
-                      <div className="d-flex align-items-center gap-2 mb-2">
-                        <div className="spinner-border spinner-border-sm" role="status">
-                          <span className="visually-hidden">Uploading...</span>
-                        </div>
+                      <div className="upload-loader mb-2">
+                        <HamsterLoader />
                         <span>Uploading image...</span>
                       </div>
                     )}
                     {loading && (
-                      <div className="d-flex align-items-center gap-2 mb-2">
-                        <div className="spinner-border spinner-border-sm" role="status">
-                          <span className="visually-hidden">Analyzing and Generating...</span>
-                        </div>
+                      <div className="upload-loader mb-2">
+                        <HamsterLoader />
                         <span>Analyzing image and generating Ghibli-style image...</span>
                       </div>
                     )}
@@ -544,15 +614,21 @@ export default function ChatAndImageGenerator() {
                         disabled={loading || (!inputValue.trim() && !isUploadMode)}
                         className="btn btn-primary d-flex align-items-center gap-1"
                       >
-                        {loading && (
-                          <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        {loading ? (
+                          <>
+                            <HamsterLoader className="button-loader" />
+                            <span className="d-none d-sm-inline">
+                              {isImageMode ? "Creating..." : "Sending..."}
+                            </span>
+                          </>
+                        ) : (
+                          <>
+                            {isImageMode ? <Wand2 size={18} /> : <MessageSquare size={18} />}
+                            <span className="d-none d-sm-inline">
+                              {isImageMode ? "Generate" : "Send"}
+                            </span>
+                          </>
                         )}
-                        {!loading && (isImageMode ? <Wand2 size={18} /> : <MessageSquare size={18} />)}
-                        <span className="d-none d-sm-inline">
-                          {loading
-                            ? (isImageMode ? "Creating..." : "Sending...")
-                            : (isImageMode ? "Generate" : "Send")}
-                        </span>
                       </button>
                     </div>
                   </div>
@@ -683,6 +759,51 @@ export default function ChatAndImageGenerator() {
             </div>
           </div>
         </div>
+      </div>
+      
+      {/* Add an ad unit before the slider */}
+      <div className="ad-container w-100 text-center my-3">
+        <ins className="adsbygoogle"
+          style={{ display: 'block' }}
+          data-ad-client="ca-pub-9155008277126927"
+          data-ad-slot="5432109876"
+          data-ad-format="auto"
+          data-full-width-responsive="true">
+        </ins>
+      </div>
+      
+      {/* Add the Image Slider Component */}
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-12 col-lg-10">
+            <ImageSlider images={[
+              {
+                url: "https://res.cloudinary.com/thetidbit23024/image/upload/v1743535955/1_cuhzns.png",
+                alt: "Ghibli-style image example 1"
+              },
+              {
+                url: "https://res.cloudinary.com/thetidbit23024/image/upload/v1743535965/2_ex8ooh.png",
+                alt: "Ghibli-style image example 2"
+              },
+              {
+                url: "https://res.cloudinary.com/thetidbit23024/image/upload/v1743535966/3_jxo701.png",
+                alt: "Ghibli-style image example 3"
+              },
+              {
+                url: "https://res.cloudinary.com/thetidbit23024/image/upload/v1743535958/4_ue87s6.png",
+                alt: "Ghibli-style image example 4"
+              },
+              {
+                url: "https://res.cloudinary.com/thetidbit23024/image/upload/v1743535957/5_web7qo.png",
+                alt: "Ghibli-style image example 5"
+              }
+            ]} />
+          </div>
+        </div>
+      </div>
+      
+      <div style={{ marginTop: '2rem' }}>
+        <GhibliInfoSection />
       </div>
     </div>
   );
