@@ -5,11 +5,13 @@ import { useState, useRef, useEffect } from "react";
 import { Wand2, Download, Share2, ChevronDown, ChevronUp, MessageSquare, Image as ImageIcon, Upload, X, Trash2, Copy, RefreshCw } from "lucide-react";
 import Image from "next/image";
 import axios from "axios";
+import { FaWhatsapp } from "react-icons/fa";
 import GhibliInfoSection from "./GhibliInfoSection";
 import HamsterLoader from "../shared/HamsterLoader";
 import Script from "next/script";
 import ImageSlider from "../shared/ImageSlider";
 import { getChatCompletion, generateImageWithDalle, getGpt4Prompt } from "../../api/openaiApi";
+import { shareImageToWhatsApp } from "./whatsAppShare";
 
 // Local storage functions for chat history
 const STORAGE_KEY = "ghibliChatHistory";
@@ -749,69 +751,56 @@ export default function ChatAndImageGenerator() {
                                 </div>
                               )}
 
-                              {message.imageUrl ? (
-                                <div className="mt-2">
-                                  {console.log("Rendering image:", message.imageUrl)}
-                                  <div className="position-relative" style={{ minHeight: "200px" }}>
-                                    <Image
-                                      src={message.imageUrl}
-                                      alt={message.role === 'user' ? "Uploaded image" : "Generated Ghibli image"}
-                                      width={400}
-                                      height={400}
-                                      className="img-fluid rounded"
-                                      placeholder="blur"
-                                      blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PC9zdmc+"
-                                      style={{ maxHeight: "400px", objectFit: "contain" }}
-                                      unoptimized={true}
-                                      onError={(e) => {
-                                        console.error("Image failed to load:", message.imageUrl);
-                                        e.target.onerror = null;
-                                        e.target.src = "https://placehold.co/400x400?text=Image+Load+Error";
-                                      }}
-                                      onLoad={handleImageLoad} // Add this line
-                                    />
-                                  </div>
-                                  {message.revisedPrompt && (
-                                    <p className="small text-muted mt-1 fst-italic d-none d-sm-block">
-                                      {message.revisedPrompt}
-                                    </p>
-                                  )}
-                                  <div className="d-flex justify-content-end gap-2 mt-2">
-                                    <a
-                                      href={message.imageUrl}
-                                      download={message.role === 'user' ? "uploaded-image.jpg" : "ghibli-image.jpg"}
-                                      className="btn btn-success btn-sm d-flex align-items-center gap-1"
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                    >
-                                      <Download size={16} />
-                                      <span className="d-none d-sm-inline">Download</span>
-                                    </a>
-                                    <button
-                                      onClick={() => {
-                                        if (navigator.share) {
-                                          navigator.share({
-                                            title: message.role === 'user' ? "My Uploaded Image" : "My Ghibli-Style Image",
-                                            text: message.role === 'user' ? "Check out this image!" : "Check out this Ghibli-style image I created!",
-                                            url: message.imageUrl,
-                                          });
-                                        } else {
-                                          navigator.clipboard.writeText(message.imageUrl);
-                                          alert("Image URL copied to clipboard!");
-                                        }
-                                      }}
-                                      className="btn btn-primary btn-sm d-flex align-items-center gap-1"
-                                    >
-                                      <Share2 size={16} />
-                                      <span className="d-none d-sm-inline">Share</span>
-                                    </button>
-                                  </div>
-                                </div>
-                              ) : message.role === 'user' && message.content.includes("Uploaded image") ? (
-                                <div className="mt-2 text-danger">
-                                  <p>Image URL missing! Please try uploading again.</p>
-                                </div>
-                              ) : null}
+{message.imageUrl ? (
+  <div className="mt-2">
+    <div className="position-relative" style={{ minHeight: "200px" }}>
+      <Image
+        src={message.imageUrl}
+        alt={message.role === 'user' ? "Uploaded image" : "Generated Ghibli image"}
+        width={400}
+        height={400}
+        className="img-fluid rounded"
+        placeholder="blur"
+        blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PC9zdmc+"
+        style={{ maxHeight: "400px", objectFit: "contain" }}
+        unoptimized={true}
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = "https://placehold.co/400x400?text=Image+Load+Error";
+        }}
+        onLoad={handleImageLoad}
+      />
+    </div>
+    {message.revisedPrompt && (
+      <p className="small text-muted mt-1 fst-italic d-none d-sm-block">
+        {message.revisedPrompt}
+      </p>
+    )}
+    <div className="d-flex justify-content-end gap-2 mt-2">
+      <a
+        href={message.imageUrl}
+        download={message.role === 'user' ? "uploaded-image.jpg" : "ghibli-image.jpg"}
+        className="btn btn-primary btn-sm d-flex align-items-center gap-1"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Download size={16} />
+        <span className="d-none d-sm-inline">Download</span>
+      </a>
+      <button
+        onClick={() => shareImageToWhatsApp(message.imageUrl, message.role)}
+        className="btn btn-whatsapp btn-sm d-flex align-items-center gap-1"
+      >
+        <FaWhatsapp size={16} />
+        <span className="d-none d-sm-inline">Share</span>
+      </button>
+    </div>
+  </div>
+) : message.role === 'user' && message.content.includes("Uploaded image") ? (
+  <div className="mt-2 text-danger">
+    <p>Image URL missing! Please try uploading again.</p>
+  </div>
+) : null}
 
                               {/* Add copy button for text responses */}
                               {!message.isLoading && message.role === 'assistant' && !message.imageUrl && (
