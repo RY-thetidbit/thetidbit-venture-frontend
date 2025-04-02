@@ -674,7 +674,7 @@ export default function ChatAndImageGenerator() {
                         <ImageIcon size={48} className="text-primary opacity-50 mb-3" />
                         <h3 className="h5">Describe an image to generate</h3>
                         <p className="text-muted">
-                          I'll create a Studio Ghibli style image based on your description!
+                          I&apos;ll create a Studio Ghibli style image based on your description!
                         </p>
                       </div>
                     ) : isUploadMode ? (
@@ -682,7 +682,7 @@ export default function ChatAndImageGenerator() {
                         <Upload size={48} className="text-primary opacity-50 mb-3" />
                         <h3 className="h5">Upload an image to Ghibli-fy</h3>
                         <p className="text-muted">
-                          Upload your photo and I'll transform it into Studio Ghibli style!
+                          Upload your photo and I&apos;ll transform it into Studio Ghibli style!
                         </p>
                       </div>
                     ) : (
