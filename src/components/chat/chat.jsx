@@ -1,4 +1,5 @@
 "use client";
+import "./chat.css";
 
 import { useState, useRef, useEffect } from "react";
 import { Wand2, Download, Share2, ChevronDown, ChevronUp, MessageSquare, Image as ImageIcon, Upload, X, Trash2, Copy, RefreshCw } from "lucide-react";
@@ -66,7 +67,7 @@ export default function ChatAndImageGenerator() {
 
   // API keys (ideally, these should be stored securely on a backend)
   const OPENAI_API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
-  const CLOUDINARY_CLOUD_NAME = "thetidbit23024"; 
+  const CLOUDINARY_CLOUD_NAME = "thetidbit23024";
   const CLOUDINARY_UPLOAD_PRESET = "thetidbit_preset";
 
   // Add this function to handle image load completion
@@ -89,7 +90,7 @@ export default function ChatAndImageGenerator() {
         setInitialLoading(false);
       }
     };
-    
+
     loadMessages();
   }, []);
 
@@ -100,7 +101,7 @@ export default function ChatAndImageGenerator() {
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
-    
+
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
@@ -115,9 +116,9 @@ export default function ChatAndImageGenerator() {
     if (messagesEndRef.current) {
       // Use a small timeout to ensure the DOM has updated
       setTimeout(() => {
-        messagesEndRef.current.scrollIntoView({ 
-          behavior: "smooth", 
-          block: "end" 
+        messagesEndRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "end"
         });
       }, 100);
     }
@@ -143,12 +144,12 @@ export default function ChatAndImageGenerator() {
     if (!inputValue.trim()) return;
 
     // Add user message to chat
-    const userMessage = { 
-      role: "user", 
+    const userMessage = {
+      role: "user",
       content: inputValue,
-      timestamp: new Date().toISOString() 
+      timestamp: new Date().toISOString()
     };
-    
+
     updateMessages([...messages, userMessage]);
     setInputValue("");
     setLoading(true);
@@ -160,7 +161,7 @@ export default function ChatAndImageGenerator() {
       // Text chat mode
       handleTextChat();
     }
-    
+
     // Focus back on the input field
     if (inputRef.current) {
       setTimeout(() => {
@@ -229,7 +230,7 @@ export default function ChatAndImageGenerator() {
       const formData = new FormData();
       formData.append("file", imageUrl);
       formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
-      
+
       // Add timestamp and folder
       formData.append("folder", "ghibli_generated");
       formData.append("timestamp", Math.floor(Date.now() / 1000));
@@ -308,7 +309,7 @@ export default function ChatAndImageGenerator() {
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
     if (!file) return;
-    
+
     // Check file size
     const MAX_SIZE_MB = 5;
     if (file.size > MAX_SIZE_MB * 1024 * 1024) {
@@ -332,7 +333,7 @@ export default function ChatAndImageGenerator() {
     setUploading(true); // Start upload loader
     setUploadedImageUrl(""); // Clear previous image
     setUploadDisabled(true); // Disable upload after image is selected
-    
+
     // Add an upload started message
     updateMessages([...messages, {
       role: "system",
@@ -340,7 +341,7 @@ export default function ChatAndImageGenerator() {
       isLoading: true,
       timestamp: new Date().toISOString()
     }]);
-    
+
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
@@ -356,7 +357,7 @@ export default function ChatAndImageGenerator() {
 
       // Replace the uploading message with the uploaded image
       const currentMessages = messages.filter(msg => !msg.isLoading);
-      
+
       // After a successful upload...
       updateMessages([...currentMessages, {
         role: "user",
@@ -374,11 +375,11 @@ export default function ChatAndImageGenerator() {
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
-      
+
       handleUploadAndGhibliFy(imageUrl); // Directly start Ghibli-fy process
     } catch (error) {
       console.error("Error uploading image:", error);
-      
+
       // Replace uploading message with error
       const currentMessages = messages.filter(msg => !msg.isLoading);
       updateMessages([...currentMessages, {
@@ -387,9 +388,9 @@ export default function ChatAndImageGenerator() {
         isError: true,
         timestamp: new Date().toISOString()
       }]);
-      
+
       setUploadDisabled(false); // Re-enable upload in case of error
-      
+
       // Reset the file input in case of error too
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
@@ -433,7 +434,7 @@ export default function ChatAndImageGenerator() {
       if (response.data && response.data.data && response.data.data[0].url) {
         const ghibliImageUrl = response.data.data[0].url;
         const revisedPrompt = response.data.data[0].revised_prompt || fullPrompt;
-        
+
         // Save the generated image to Cloudinary for permanent storage
         const cloudinaryResponse = await saveImageToCloudinary(ghibliImageUrl);
         const storedImageUrl = cloudinaryResponse.secure_url;
@@ -454,7 +455,7 @@ export default function ChatAndImageGenerator() {
             }
           ];
         });
-        
+
         // Reset the file input and uploaded image state
         setUploadDisabled(false);
         setUploadedImageUrl("");
@@ -506,7 +507,7 @@ export default function ChatAndImageGenerator() {
     setIsImageMode(mode === 'image');
     setUploadedImageUrl(""); // Clear uploaded image URL
     setUploadDisabled(false); // Enable upload when mode changes
-    
+
     // Add a mode change message instead of clearing history
     let systemMessage = "";
     if (mode === 'upload') {
@@ -516,14 +517,14 @@ export default function ChatAndImageGenerator() {
     } else {
       systemMessage = "I'm now in text chat mode. Ask me anything!";
     }
-    
+
     // Add mode change message to existing messages
     updateMessages([...messages, {
       role: "system",
       content: systemMessage,
       timestamp: new Date().toISOString()
     }]);
-    
+
     // Focus on input if switching to chat or image mode
     if (!isUploadMode && inputRef.current) {
       setTimeout(() => {
@@ -553,14 +554,14 @@ export default function ChatAndImageGenerator() {
   const clearChatHistory = () => {
     const initialMessage = {
       role: "system",
-      content: isUploadMode 
-        ? "I'm now in Upload & Ghibli-fy mode. Upload an image to get started!" 
-        : isImageMode 
-        ? "I'm now in Ghibli image generation mode. Describe the image you'd like to create!"
-        : "I'm now in text chat mode. Ask me anything!",
+      content: isUploadMode
+        ? "I'm now in Upload & Ghibli-fy mode. Upload an image to get started!"
+        : isImageMode
+          ? "I'm now in Ghibli image generation mode. Describe the image you'd like to create!"
+          : "I'm now in text chat mode. Ask me anything!",
       timestamp: new Date().toISOString()
     };
-    
+
     updateMessages([initialMessage]);
     localStorage.removeItem(STORAGE_KEY);
   };
@@ -569,7 +570,7 @@ export default function ChatAndImageGenerator() {
   const retryRequest = (index) => {
     const message = messages[index];
     if (!message || message.role !== 'assistant' || !message.isError) return;
-    
+
     // Find the last user message before this error
     let userMessageIndex = -1;
     for (let i = index - 1; i >= 0; i--) {
@@ -578,16 +579,16 @@ export default function ChatAndImageGenerator() {
         break;
       }
     }
-    
+
     if (userMessageIndex === -1) return;
-    
+
     // Get the user's message content
     const userMessage = messages[userMessageIndex];
-    
+
     // Remove the error message
     const newMessages = messages.filter((_, i) => i !== index);
     updateMessages(newMessages);
-    
+
     // Retry the request
     setLoading(true);
     if (isImageMode) {
@@ -614,9 +615,9 @@ export default function ChatAndImageGenerator() {
 
       <div className="row justify-content-center mx-0">
         <div className="col-12 col-md-10 col-lg-8 px-0 px-sm-2">
-          <div className="card shadow border-0 rounded-0 rounded-sm-3">
+          <div className="card shadow border-0 rounded-0 rounded-sm-3 chat-container">
             {/* Header with Mode Toggle */}
-            <div className="card-header bg-primary bg-gradient text-white py-2 py-sm-3">
+            <div className="card-header chat-header">
               <h2 className="h5 h4-sm mb-2">
                 {isImageMode ? "Ghibli Image Generator" : isUploadMode ? "Upload & Ghibli-fy" : "AI Chat Assistant"}
               </h2>
@@ -631,21 +632,21 @@ export default function ChatAndImageGenerator() {
                 <div className="d-flex justify-content-center align-items-center gap-2">
                   <button
                     onClick={() => toggleMode('upload')}
-                    className={`btn btn-sm btn-outline-light d-flex align-items-center gap-1 ${isUploadMode ? 'active' : ''}`}
+                    className={`btn btn-sm btn-modern d-flex align-items-center gap-1 ${isUploadMode ? 'active' : ''}`}
                   >
                     <Upload size={16} />
                     <span className="d-none d-sm-inline">Upload</span>
                   </button>
                   <button
                     onClick={() => toggleMode('image')}
-                    className={`btn btn-sm btn-outline-light d-flex align-items-center gap-1 ${isImageMode ? 'active' : ''}`}
+                    className={`btn btn-sm btn-modern d-flex align-items-center gap-1 ${isImageMode ? 'active' : ''}`}
                   >
                     <ImageIcon size={16} />
                     <span className="d-none d-sm-inline">Image</span>
                   </button>
                   <button
                     onClick={() => toggleMode('chat')}
-                    className={`btn btn-sm btn-outline-light d-flex align-items-center gap-1 ${!isImageMode && !isUploadMode ? 'active' : ''}`}
+                    className={`btn btn-sm btn-modern d-flex align-items-center gap-1 ${!isImageMode && !isUploadMode ? 'active' : ''}`}
                   >
                     <MessageSquare size={16} />
                     <span className="d-none d-sm-inline">Chat</span>
@@ -653,7 +654,7 @@ export default function ChatAndImageGenerator() {
                 </div>
                 <button
                   onClick={clearChatHistory}
-                  className="btn btn-sm btn-outline-light d-flex align-items-center gap-1"
+                  className="btn btn-sm btn-modern d-flex align-items-center gap-1"
                   title="Clear chat history"
                 >
                   <Trash2 size={16} />
@@ -663,7 +664,7 @@ export default function ChatAndImageGenerator() {
             </div>
 
             {/* Messages Area */}
-            <div className="card-body bg-light p-2 p-sm-3" style={{ height: "60vh", overflowY: "auto" }}>
+            <div className="card-body chat-body">
               <div className="d-flex flex-column gap-3">
                 {/* Empty state for new chats */}
                 {messages.length <= 1 && !initialLoading && (
@@ -719,22 +720,9 @@ export default function ChatAndImageGenerator() {
                     </div>
 
                     {messages.map((message, index) => (
-                      <div
-                        key={index}
-                        className={`d-flex ${message.role === 'user' ? 'justify-content-end' : 'justify-content-start'}`}
-                      >
-                        <div
-                          className={`p-2 p-sm-3 rounded ${
-                            message.role === 'user'
-                              ? 'bg-primary text-white rounded-top-end-0'
-                              : message.role === 'system'
-                                ? 'bg-secondary bg-opacity-10 text-secondary border-0'  
-                                : message.isError
-                                  ? 'bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 rounded-top-start-0'
-                                  : 'bg-white border rounded-top-start-0'
-                          }`}
-                          style={{ maxWidth: "90%" }}
-                        >
+                      <div key={index} className={`d-flex ${message.role === 'user' ? 'justify-content-end' : 'justify-content-start'} message`}>
+                        <div className={`p-2 p-sm-3 rounded ${message.role === 'user' ? 'bg-primary text-white' : 'bg-white text-dark'} `}>
+
                           {message.isLoading ? (
                             <div className="message-loader">
                               <HamsterLoader />
@@ -743,24 +731,24 @@ export default function ChatAndImageGenerator() {
                           ) : (
                             <>
                               <p className={
-                                message.role === 'user' 
-                                  ? 'text-white' 
-                                  : message.isError 
-                                    ? 'text-danger mb-0' 
+                                message.role === 'user'
+                                  ? 'text-white'
+                                  : message.isError
+                                    ? 'text-danger mb-0'
                                     : 'text-dark mb-0'
                               }>
                                 {message.content}
                               </p>
-                              
+
                               {/* Show timestamp if available */}
                               {message.timestamp && (
                                 <div className="text-end mt-1">
                                   <small className={`opacity-75 ${message.role === 'user' ? 'text-white' : 'text-muted'}`}>
-                                    {new Date(message.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                                    {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                   </small>
                                 </div>
                               )}
-                              
+
                               {message.imageUrl ? (
                                 <div className="mt-2">
                                   {console.log("Rendering image:", message.imageUrl)}
@@ -824,7 +812,7 @@ export default function ChatAndImageGenerator() {
                                   <p>Image URL missing! Please try uploading again.</p>
                                 </div>
                               ) : null}
-                              
+
                               {/* Add copy button for text responses */}
                               {!message.isLoading && message.role === 'assistant' && !message.imageUrl && (
                                 <div className="d-flex justify-content-end mt-2 gap-2">
@@ -834,16 +822,16 @@ export default function ChatAndImageGenerator() {
                                       setCopiedIndex(index);
                                       setTimeout(() => setCopiedIndex(null), 2000);
                                     }}
-                                    className="btn btn-sm btn-outline-secondary"
+                                    className="btn btn-sm btn-modern"
                                   >
                                     {copiedIndex === index ? 'Copied!' : <><Copy size={14} /> <span className="ms-1 d-none d-sm-inline">Copy</span></>}
                                   </button>
-                                  
+
                                   {/* Add retry button for error messages */}
                                   {message.isError && (
                                     <button
                                       onClick={() => retryRequest(index)}
-                                      className="btn btn-sm btn-outline-danger"
+                                      className="btn btn-sm btn-modern"
                                     >
                                       <RefreshCw size={14} /> <span className="ms-1 d-none d-sm-inline">Retry</span>
                                     </button>
@@ -886,7 +874,7 @@ export default function ChatAndImageGenerator() {
                           type="file"
                           accept="image/*"
                           onChange={handleImageUpload}
-                          className="form-control"
+                          className="form-control chat-input"
                           disabled={uploadDisabled || uploading || loading}
                           ref={fileInputRef}
                         />
@@ -917,14 +905,14 @@ export default function ChatAndImageGenerator() {
                         value={inputValue}
                         onChange={handleInputChange}
                         placeholder={isImageMode ? "Describe your Ghibli image..." : "Type your message..."}
-                        className="form-control py-2"
+                        className="form-control py-2 chat-input"
                         disabled={loading}
-                        ref={inputRef} // Add this ref
+                        ref={inputRef}
                       />
                       <button
                         type="submit"
                         disabled={loading || (!inputValue.trim() && !isUploadMode)}
-                        className="btn btn-primary d-flex align-items-center gap-1"
+                        className="btn btn-modern d-flex align-items-center gap-1"
                       >
                         {loading ? (
                           <>
@@ -952,7 +940,7 @@ export default function ChatAndImageGenerator() {
                     <button
                       type="button"
                       onClick={togglePrompts}
-                      className="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1 w-100 mb-2"
+                      className="btn btn-sm btn-modern d-flex align-items-center gap-1 w-100 mb-2"
                     >
                       <span>{showPrompts ? "Hide" : "Show"} Prompt Suggestions</span>
                       {showPrompts ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
@@ -970,7 +958,7 @@ export default function ChatAndImageGenerator() {
                                 setInputValue("A tender good night kiss between a young couple under a starry sky, soft moonlight illuminating their silhouettes");
                                 setShowPrompts(false);
                               }}
-                              className="btn btn-outline-secondary btn-sm rounded-pill text-truncate"
+                              className="btn btn-modern btn-sm rounded-pill text-truncate"
                             >
                               Goodnight Kiss
                             </button>
@@ -980,7 +968,7 @@ export default function ChatAndImageGenerator() {
                                 setInputValue("A romantic scene of a couple in a garden with fireflies, about to share a gentle kiss in the moonlight");
                                 setShowPrompts(false);
                               }}
-                              className="btn btn-outline-secondary btn-sm rounded-pill text-truncate"
+                              className="btn btn-modern btn-sm rounded-pill text-truncate"
                             >
                               Garden Romance
                             </button>
@@ -990,7 +978,7 @@ export default function ChatAndImageGenerator() {
                                 setInputValue("A couple sharing a sweet kiss on a balcony overlooking a magical night cityscape with twinkling lights");
                                 setShowPrompts(false);
                               }}
-                              className="btn btn-outline-secondary btn-sm rounded-pill text-truncate"
+                              className="btn btn-modern btn-sm rounded-pill text-truncate"
                             >
                               City Romance
                             </button>
@@ -1000,7 +988,7 @@ export default function ChatAndImageGenerator() {
                                 setInputValue("Two lovers saying goodnight with a gentle kiss under a cherry blossom tree, petals falling around them");
                                 setShowPrompts(false);
                               }}
-                              className="btn btn-outline-secondary btn-sm rounded-pill text-truncate"
+                              className="btn btn-modern btn-sm rounded-pill text-truncate"
                             >
                               Cherry Blossom Kiss
                             </button>
@@ -1017,7 +1005,7 @@ export default function ChatAndImageGenerator() {
                                 setInputValue("A cute anime girl with big expressive eyes blowing a heart-shaped flying kiss, pink heart floating in the air");
                                 setShowPrompts(false);
                               }}
-                              className="btn btn-outline-secondary btn-sm rounded-pill text-truncate"
+                              className="btn btn-modern btn-sm rounded-pill text-truncate"
                             >
                               Heart Kiss
                             </button>
@@ -1027,7 +1015,7 @@ export default function ChatAndImageGenerator() {
                                 setInputValue("A cheerful girl with flowing hair sending flying kisses with sparkling hearts, standing in a flower meadow");
                                 setShowPrompts(false);
                               }}
-                              className="btn btn-outline-secondary btn-sm rounded-pill text-truncate"
+                              className="btn btn-modern btn-sm rounded-pill text-truncate"
                             >
                               Meadow Kiss
                             </button>
@@ -1037,7 +1025,7 @@ export default function ChatAndImageGenerator() {
                                 setInputValue("A cute girl with pigtails sending a flying kiss with multiple colorful heart shapes, starry background");
                                 setShowPrompts(false);
                               }}
-                              className="btn btn-outline-secondary btn-sm rounded-pill text-truncate"
+                              className="btn btn-modern btn-sm rounded-pill text-truncate"
                             >
                               Starry Hearts
                             </button>
@@ -1047,7 +1035,7 @@ export default function ChatAndImageGenerator() {
                                 setInputValue("A sweet girl in a summer dress blowing heart-shaped bubbles that float as flying kisses, sunset beach setting");
                                 setShowPrompts(false);
                               }}
-                              className="btn btn-outline-secondary btn-sm rounded-pill text-truncate"
+                              className="btn btn-modern btn-sm rounded-pill text-truncate"
                             >
                               Beach Hearts
                             </button>
@@ -1057,7 +1045,7 @@ export default function ChatAndImageGenerator() {
                                 setInputValue("A cute girl with cat ears and a playful smile sending heart-shaped flying kisses with magical sparkles");
                                 setShowPrompts(false);
                               }}
-                              className="btn btn-outline-secondary btn-sm rounded-pill text-truncate"
+                              className="btn btn-modern btn-sm rounded-pill text-truncate"
                             >
                               Cat Girl Kiss
                             </button>
@@ -1072,7 +1060,7 @@ export default function ChatAndImageGenerator() {
           </div>
         </div>
       </div>
-      
+
       {/* Add an ad unit before the slider */}
       <div className="ad-container w-100 text-center my-3">
         <ins className="adsbygoogle"
@@ -1083,7 +1071,7 @@ export default function ChatAndImageGenerator() {
           data-full-width-responsive="true">
         </ins>
       </div>
-      
+
       {/* Add the Image Slider Component */}
       <div className="container">
         <div className="row justify-content-center">
@@ -1113,7 +1101,7 @@ export default function ChatAndImageGenerator() {
           </div>
         </div>
       </div>
-      
+
       <div style={{ marginTop: '2rem' }}>
         <GhibliInfoSection />
       </div>
