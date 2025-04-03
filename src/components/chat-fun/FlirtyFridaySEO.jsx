@@ -15,40 +15,40 @@ export default function FlirtyFridaySEO() {
       <h3 className="mt-4">Flirty Chat Modes</h3>
       <ul>
         <li>
-          <strong>Playful Teasing</strong> – Witty, cheeky, and full of laughter! Your AI knows how to keep the conversation light and fun.
+          <strong>Playful Teasing</strong> &ndash; Witty, cheeky, and full of laughter! Your AI knows how to keep the conversation light and fun.
         </li>
         <li>
-          <strong>Romantic & Sweet</strong> – Dreamy, poetic, and heart-melting compliments just for you!
+          <strong>Romantic &amp; Sweet</strong> &ndash; Dreamy, poetic, and heart-melting compliments just for you!
         </li>
         <li>
-          <strong>Cheesy Pickup Lines</strong> – Hilariously bad yet irresistibly charming pick-up lines that will make you smile.
+          <strong>Cheesy Pickup Lines</strong> &ndash; Hilariously bad yet irresistibly charming pick-up lines that will make you smile.
         </li>
         <li>
-          <strong>Mysterious & Charming</strong> – Smooth, intriguing, and hard to resist. Your AI flirts like a classic romance novel character!
+          <strong>Mysterious &amp; Charming</strong> &ndash; Smooth, intriguing, and hard to resist. Your AI flirts like a classic romance novel character!
         </li>
       </ul>
       <h3 className="mt-4">How It Works</h3>
       <ol>
         <li>
-          <strong>Select Your Mood</strong> – Choose your preferred chat style: Playful, Romantic, Cheesy, or Mysterious.
+          <strong>Select Your Mood</strong> &ndash; Choose your preferred chat style: Playful, Romantic, Cheesy, or Mysterious.
         </li>
         <li>
-          <strong>Start the Conversation</strong> – Type a message, and let your AI respond with a perfect flirty reply.
+          <strong>Start the Conversation</strong> &ndash; Type a message, and let your AI respond with a perfect flirty reply.
         </li>
         <li>
-          <strong>Enjoy & Share</strong> – Have a great chat and even share your funniest or sweetest conversations with friends!
+          <strong>Enjoy &amp; Share</strong> &ndash; Have a great chat and even share your funniest or sweetest conversations with friends!
         </li>
       </ol>
-      <h3 className="mt-4">Why You’ll Love Flirty Friday</h3>
+      <h3 className="mt-4">Why You&apos;ll Love Flirty Friday</h3>
       <ul>
         <li>
-          <strong>Unique & Engaging</strong> – Every week feels fresh with different chat styles.
+          <strong>Unique &amp; Engaging</strong> &ndash; Every week feels fresh with different chat styles.
         </li>
         <li>
-          <strong>Personalized Experience</strong> – Pick the mood that fits your vibe.
+          <strong>Personalized Experience</strong> &ndash; Pick the mood that fits your vibe.
         </li>
         <li>
-          <strong>Fun & Addictive</strong> – Whether you're flirting for fun or just enjoying AI interactions, it’s always entertaining.
+          <strong>Fun &amp; Addictive</strong> &ndash; Whether you&apos;re flirting for fun or just enjoying AI interactions, it&apos;s always entertaining.
         </li>
       </ul>
       <p className="mt-4">
