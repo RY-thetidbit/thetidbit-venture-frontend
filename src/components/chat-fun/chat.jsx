@@ -2,9 +2,10 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Heart, Send } from "lucide-react";
+import { Heart, Send, Trash } from "lucide-react";
 import axios from "axios";
 import FlirtyFridaySEO from "./FlirtyFridaySEO";
+import Script from "next/script";
 
 export default function FlirtyFridayChat() {
   const [chatMessages, setChatMessages] = useState([]);
@@ -15,15 +16,34 @@ export default function FlirtyFridayChat() {
   const [isTyping, setIsTyping] = useState(false);
   const chatContainerRef = useRef(null);
 
-  // Load chat history from localStorage on mount
+  const loadAds = () => {
+    if (window.adsbygoogle && typeof window.adsbygoogle.push === "function") {
+      try {
+        window.adsbygoogle.push({});
+      } catch (e) {
+        console.error("AdSense error:", e);
+      }
+    }
+  };
+
+  const clearChatHistory = () => {
+    setChatMessages([]);
+    localStorage.removeItem("chatHistory");
+  };
+
   useEffect(() => {
+    const storedLanguage = localStorage.getItem("language");
+    if (storedLanguage) setLanguage(storedLanguage);
+
+    const storedGender = localStorage.getItem("gender");
+    if (storedGender) setGender(storedGender);
+
     const storedHistory = localStorage.getItem("chatHistory");
     if (storedHistory) {
       setChatMessages(JSON.parse(storedHistory));
     }
   }, []);
 
-  // Update localStorage when chatMessages change and auto-scroll
   useEffect(() => {
     localStorage.setItem("chatHistory", JSON.stringify(chatMessages));
     if (chatContainerRef.current) {
@@ -42,7 +62,7 @@ export default function FlirtyFridayChat() {
         role: msg.role.toLowerCase() === "user" ? "user" : "assistant",
         content: msg.content,
       }));
-      
+
       const moodInstructions = {
         Playful:
           language === "English"
@@ -93,22 +113,34 @@ export default function FlirtyFridayChat() {
     }
   };
 
-  const clearChatHistory = () => {
-    setChatMessages([]);
-    localStorage.removeItem("chatHistory");
+  const changeSettings = () => {
+    setLanguage(null);
+    setGender(null);
+    localStorage.removeItem("language");
+    localStorage.removeItem("gender");
   };
 
-  // Render language selection with SEO content
   if (!language) {
     return (
       <div className="container py-5">
         <div className="row justify-content-center">
           <div className="col-11 col-sm-8 col-lg-6">
-            <div className="card shadow border-0 rounded-4 text-center p-4" style={{ background: "linear-gradient(to bottom right, #fce4ec, #f8bbd0)" }}>
+            <div
+              className="card shadow border-0 rounded-4 text-center p-4"
+              style={{ background: "linear-gradient(to bottom right, #fce4ec, #f8bbd0)" }}
+            >
               <h2 className="mb-4 fw-bold text-danger">Select Language</h2>
               <div className="d-flex flex-column gap-3">
                 {["English", "Hindi", "Marathi"].map((lang) => (
-                  <button key={lang} onClick={() => setLanguage(lang)} className="btn btn-outline-danger btn-lg" style={{ borderRadius: "50px", padding: "0.75rem 1.5rem" }}>
+                  <button
+                    key={lang}
+                    onClick={() => {
+                      setLanguage(lang);
+                      localStorage.setItem("language", lang);
+                    }}
+                    className="btn btn-outline-danger btn-lg"
+                    style={{ borderRadius: "50px", padding: "0.75rem 1.5rem" }}
+                  >
                     {lang}
                   </button>
                 ))}
@@ -116,22 +148,43 @@ export default function FlirtyFridayChat() {
             </div>
           </div>
         </div>
-        <FlirtyFridaySEO />
+        <Script
+          id="adsbygoogle-init"
+          strategy="afterInteractive"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9155008277126927"
+          crossOrigin="anonymous"
+          onLoad={() => {
+            loadAds();
+          }}
+        />
+        <div className="mt-65">
+          <FlirtyFridaySEO />
+        </div>
       </div>
     );
   }
 
-  // Render gender selection with SEO content
   if (!gender) {
     return (
-      <div className="container py-5">
+      <div className="container py-4">
         <div className="row justify-content-center">
           <div className="col-11 col-sm-8 col-lg-6">
-            <div className="card shadow border-0 rounded-4 text-center p-4" style={{ background: "linear-gradient(to bottom right, #e8f5e9, #c8e6c9)" }}>
+            <div
+              className="card shadow border-0 rounded-4 text-center p-4"
+              style={{ background: "linear-gradient(to bottom right, #e8f5e9, #c8e6c9)" }}
+            >
               <h2 className="mb-4 fw-bold text-primary">Select Gender</h2>
               <div className="d-flex flex-column gap-3">
                 {["Female", "Male"].map((g) => (
-                  <button key={g} onClick={() => setGender(g)} className="btn btn-outline-primary btn-lg" style={{ borderRadius: "50px", padding: "0.75rem 1.5rem" }}>
+                  <button
+                    key={g}
+                    onClick={() => {
+                      setGender(g);
+                      localStorage.setItem("gender", g);
+                    }}
+                    className="btn btn-outline-primary btn-lg"
+                    style={{ borderRadius: "50px", padding: "0.75rem 1.5rem" }}
+                  >
                     {g}
                   </button>
                 ))}
@@ -139,12 +192,22 @@ export default function FlirtyFridayChat() {
             </div>
           </div>
         </div>
-        <FlirtyFridaySEO />
+        <Script
+          id="adsbygoogle-init"
+          strategy="afterInteractive"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9155008277126927"
+          crossOrigin="anonymous"
+          onLoad={() => {
+            loadAds();
+          }}
+        />
+        <div className="mt-65">
+          <FlirtyFridaySEO />
+        </div>
       </div>
     );
   }
 
-  // Set theme based on gender
   const chatCardStyle =
     gender === "Female"
       ? {
@@ -160,10 +223,11 @@ export default function FlirtyFridayChat() {
 
   const headerTextColor = gender === "Female" ? "#d81b60" : "#01579b";
   const headerHeartStyle = gender === "Female" ? { color: "#e91e63", fill: "#e91e63" } : { color: "#039be5", fill: "#039be5" };
+  const headerMessage =
+    gender === "Female"
+      ? "Welcome, lovely lady! Let's chat and have some fun."
+      : "Welcome, suave gentleman! Ready to start an engaging chat?";
 
-  const headerMessage = gender === "Female" ? "Welcome, lovely lady! Let's chat and have some fun." : "Welcome, suave gentleman! Ready to start an engaging chat?";
-
-  // Set chat background based on gender
   let chatBackground;
   if (gender === "Female") {
     const femaleAvatars = [
@@ -179,39 +243,28 @@ export default function FlirtyFridayChat() {
   }
 
   return (
-    <div className="container py-5">
+    <div className="container py-4">
       <div className="row justify-content-center">
-        {/* Full-width on mobile */}
         <div className="col-12 col-sm-10 col-lg-8">
           <div className="card shadow border-0 rounded-4" style={chatCardStyle}>
-            <div className="card-body p-4">
-              <motion.h1
-                className="text-center mb-4 fw-bold d-flex align-items-center justify-content-center"
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                style={{ fontSize: "1.75rem", color: headerTextColor }}
-              >
-                <Heart className="me-2" style={headerHeartStyle} />
-                {headerMessage}
-                <Heart className="ms-2" style={headerHeartStyle} />
-              </motion.h1>
-
-              <div className="d-flex flex-wrap justify-content-center gap-3 mb-4">
-                {["Playful", "Romantic", "Cheesy", "Mysterious"].map((mode) => (
-                  <button
-                    key={mode}
-                    onClick={() => setMood(mode)}
-                    className={`btn btn-sm ${mood === mode ? "btn-danger" : "btn-outline-danger"}`}
-                    style={{
-                      borderRadius: "50px",
-                      transform: mood === mode ? "scale(1.05)" : "scale(1)",
-                      transition: "all 0.3s ease",
-                      padding: "0.5rem 1.5rem",
-                    }}
-                  >
-                    {mode}
-                  </button>
-                ))}
+            <div className="card-body p-2">
+              <div className="d-flex flex-column align-items-center">
+                <motion.h1
+                  className="text-center mb-2 fw-bold d-flex align-items-center justify-content-center"
+                  animate={{ scale: [1, 1.03, 1] }}
+                  transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                  style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.5rem)", color: headerTextColor }}
+                >
+                  <Heart className="me-2" style={headerHeartStyle} />
+                  {headerMessage}
+                  <Heart className="ms-2" style={headerHeartStyle} />
+                </motion.h1>
+                <button
+                  onClick={changeSettings}
+                  className="btn btn-link text-decoration-none small"
+                >
+                  Change Settings
+                </button>
               </div>
 
               <div
@@ -247,12 +300,15 @@ export default function FlirtyFridayChat() {
                             maxWidth: "85%",
                             borderTopRightRadius: msg.role === "User" ? "0" : "12px",
                             borderTopLeftRadius: msg.role === "AI" ? "0" : "12px",
-                            background: msg.role === "User"
-                              ? "linear-gradient(to right, #1976d2, #2196f3)"
-                              : "linear-gradient(to right, #fff0f5, #ffeefb)",
+                            background:
+                              msg.role === "User"
+                                ? "linear-gradient(to right, #1976d2, #2196f3)"
+                                : "linear-gradient(to right, #fff0f5, #ffeefb)",
                           }}
                         >
-                          <p className="small fw-bold mb-1">{msg.role === "User" ? "You" : `Flirty AI (${mood})`}</p>
+                          <p className="small fw-bold mb-1">
+                            {msg.role === "User" ? "You" : `Flirty AI (${mood})`}
+                          </p>
                           <p className="mb-0">{msg.content}</p>
                         </div>
                       </motion.div>
@@ -272,13 +328,13 @@ export default function FlirtyFridayChat() {
                 )}
               </div>
 
-              <div className="d-flex flex-column flex-sm-row gap-2">
+              <div className="d-flex gap-2">
                 <input
                   type="text"
                   value={userMessage}
                   onChange={(e) => setUserMessage(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-                  className="form-control shadow-sm w-100"
+                  className="form-control shadow-sm flex-grow-1"
                   placeholder="Type a flirty message..."
                   disabled={isTyping}
                   style={{ borderRadius: "12px", padding: "0.75rem" }}
@@ -293,16 +349,45 @@ export default function FlirtyFridayChat() {
                 </button>
               </div>
 
-              {/* <div className="mt-3">
-                <button onClick={clearChatHistory} className="btn btn-warning" style={{ borderRadius: "12px", padding: "0.5rem 1rem" }}>
-                  Clear Chat History
+              <div className="d-flex justify-content-between align-items-center mt-3">
+                <div className="d-flex flex-wrap gap-2">
+                  {["Playful", "Romantic", "Cheesy", "Mysterious"].map((mode) => (
+                    <button
+                      key={mode}
+                      onClick={() => setMood(mode)}
+                      className={`btn btn-sm ${mood === mode ? "btn-danger" : "btn-outline-danger"}`}
+                      style={{
+                        borderRadius: "50px",
+                        transform: mood === mode ? "scale(1.05)" : "scale(1)",
+                        transition: "all 0.3s ease",
+                        padding: "0.5rem 1.5rem",
+                      }}
+                    >
+                      {mode}
+                    </button>
+                  ))}
+                </div>
+                <button onClick={clearChatHistory} className="btn btn-link text-danger p-0">
+                  <Trash size={20} />
                 </button>
-              </div> */}
+              </div>
 
-              {/* <FlirtyFridaySEO /> */}
+              <Script
+                id="adsbygoogle-init"
+                strategy="afterInteractive"
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9155008277126927"
+                crossOrigin="anonymous"
+                onLoad={() => {
+                  loadAds();
+                }}
+              />
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="mt-5 pt-65">
+        <FlirtyFridaySEO />
       </div>
     </div>
   );
