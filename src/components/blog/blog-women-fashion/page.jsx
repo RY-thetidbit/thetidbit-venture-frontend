@@ -16,26 +16,31 @@ const NewsApp = () => {
     const fetchNews = async () => {
       setLoading(true);
 
-      // Check localStorage for cached data
-      const cachedData = localStorage.getItem(CACHE_KEY);
-      if (cachedData) {
-        const { articles: cachedArticles, timestamp, cachedLanguage } = JSON.parse(cachedData);
-        const now = Date.now();
-        if (now - timestamp < CACHE_EXPIRY && cachedLanguage === language) {
-          setArticles(cachedArticles);
-          setLoading(false);
-          return;
-        }
-      }
-
-      // Fetch fresh data if cache is expired or not available
       try {
+        // Check localStorage for cached data
+        const cachedData = localStorage.getItem(CACHE_KEY);
+        if (cachedData) {
+          const { articles: cachedArticles, timestamp, cachedLanguage } = JSON.parse(cachedData);
+          const now = Date.now();
+          if (now - timestamp < CACHE_EXPIRY && cachedLanguage === language) {
+            setArticles(cachedArticles || []);
+            setLoading(false);
+            return;
+          }
+        }
+
+        // Fetch fresh data if cache is expired or not available
         const query = language === 'hindi' ? 'भारतीय महिला फैशन OR स्वास्थ्य OR ट्रेंड' : 'Indian women fashion OR health OR trends';
         const response = await fetch(
           `https://newsapi.org/v2/everything?q=${query}&apiKey=dee373b831964dfdb34259a56efbf20b&pageSize=50`
         );
+
+        if (!response.ok) {
+          throw new Error(`HTTP Error: ${response.status}`);
+        }
+
         const data = await response.json();
-        setArticles(data.articles);
+        setArticles(data.articles || []);
 
         // Cache the data in localStorage
         localStorage.setItem(
@@ -44,6 +49,7 @@ const NewsApp = () => {
         );
       } catch (error) {
         console.error('Error fetching news:', error);
+        setArticles([]); // Ensure articles is always an array
       } finally {
         setLoading(false);
       }
@@ -125,18 +131,18 @@ const NewsApp = () => {
           >
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             <img
-              src={articles[currentArticleIndex].urlToImage || 'https://via.placeholder.com/600x400'}
-              alt={articles[currentArticleIndex].title}
+              src={articles[currentArticleIndex]?.urlToImage || 'https://via.placeholder.com/600x400'}
+              alt={articles[currentArticleIndex]?.title || 'No Image'}
               className="w-full h-64 object-cover"
             />
             <div className="absolute inset-x-0 bottom-0 p-4 bg-white/90 backdrop-blur-md rounded-t-xl">
-              <h2 className="text-lg font-bold text-gray-800 mb-2">{articles[currentArticleIndex].title}</h2>
-              <p className="text-sm text-gray-600 mb-4">{articles[currentArticleIndex].description}</p>
+              <h2 className="text-lg font-bold text-gray-800 mb-2">{articles[currentArticleIndex]?.title || 'No Title'}</h2>
+              <p className="text-sm text-gray-600 mb-4">{articles[currentArticleIndex]?.description || 'No Description'}</p>
               <div className="flex items-center justify-between text-xs text-gray-500">
-                <span>{articles[currentArticleIndex].source.name}</span>
+                <span>{articles[currentArticleIndex]?.source?.name || 'Unknown Source'}</span>
                 <span>
                   <Clock className="w-3 h-3 inline-block mr-1" />
-                  {formatTime(articles[currentArticleIndex].publishedAt)}
+                  {formatTime(articles[currentArticleIndex]?.publishedAt || new Date())}
                 </span>
               </div>
               <div className="flex items-center justify-between mt-4">
