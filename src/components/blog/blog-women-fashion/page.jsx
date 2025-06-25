@@ -4,19 +4,22 @@ import React, { useState, useEffect } from 'react';
 import { Heart, Share2, Bookmark, Clock } from 'lucide-react';
 
 const PROXY_URL = "https://api.allorigins.win/get?url=";
-const NEWS_API_URL = "https://newsapi.org/v2/everything?q=women&apiKey=dee373b831964dfdb34259a56efbf20b";
+const NEWS_API_URL_ENGLISH = "https://newsapi.org/v2/everything?q=women+OR+fashion+OR+health+OR+food&language=en&apiKey=dee373b831964dfdb34259a56efbf20b";
+const NEWS_API_URL_HINDI = "https://newsapi.org/v2/everything?q=women&language=hi&apiKey=dee373b831964dfdb34259a56efbf20b";
 
 const NewsApp = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentArticleIndex, setCurrentArticleIndex] = useState(0);
+  const [language, setLanguage] = useState(null);
 
   useEffect(() => {
     const fetchNews = async () => {
       setLoading(true);
 
       try {
-        const response = await fetch(`${PROXY_URL}${encodeURIComponent(NEWS_API_URL)}`);
+        const apiUrl = language === 'hindi' ? NEWS_API_URL_HINDI : NEWS_API_URL_ENGLISH;
+        const response = await fetch(`${PROXY_URL}${encodeURIComponent(apiUrl)}`);
 
         if (!response.ok) {
           throw new Error(`HTTP Error: ${response.status}`);
@@ -43,7 +46,22 @@ const NewsApp = () => {
       }
     };
 
-    fetchNews();
+    if (language) {
+      fetchNews();
+    }
+  }, [language]);
+
+  useEffect(() => {
+    const userLanguage = localStorage.getItem('preferred_language');
+    if (userLanguage) {
+      setLanguage(userLanguage);
+    } else {
+      const selectedLanguage = window.confirm('Would you like to see news in Hindi? Click "Cancel" for English.')
+        ? 'hindi'
+        : 'english';
+      setLanguage(selectedLanguage);
+      localStorage.setItem('preferred_language', selectedLanguage);
+    }
   }, []);
 
   const handleSwipe = (direction) => {
@@ -78,11 +96,11 @@ const NewsApp = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 flex flex-col items-center">
+    <div className="min-h-screen bg-gradient-to-br from-pink-100 via-rose-200 to-purple-200 flex flex-col items-center">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white shadow-md w-full rounded-b-lg">
         <div className="max-w-md mx-auto px-4 py-4 flex items-center justify-between">
-          <h1 className="text-xl font-bold bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent">
+          <h1 className="text-xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
             Women&apos;s Fashion & Health News
           </h1>
           <p className="text-xs text-gray-500">Swipe to explore stories</p>
@@ -93,8 +111,8 @@ const NewsApp = () => {
       <main className="flex-grow flex items-center justify-center">
         {loading ? (
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-gray-200 border-t-rose-500 rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading stories...</p>
+            <div className="loader mx-auto mb-4"></div>
+            <p className="text-rose-600">Fetching the latest stories for you...</p>
           </div>
         ) : articles.length > 0 ? (
           <div
@@ -109,10 +127,10 @@ const NewsApp = () => {
               className="w-full h-64 object-cover rounded-t-xl"
               style={{ height: "16rem", objectFit: "cover", width: "-webkit-fill-available" }}
             />
-            <div className="absolute inset-x-0 bottom-0 p-4 bg-white/90 backdrop-blur-md rounded-b-xl">
-              <h2 className="text-lg font-bold text-gray-800 mb-2">{articles[currentArticleIndex]?.title || 'No Title'}</h2>
-              <p className="text-sm text-gray-600 mb-4">{articles[currentArticleIndex]?.description || 'No Description'}</p>
-              <div className="flex items-center justify-between text-xs text-gray-500">
+            <div className="absolute inset-x-0 bottom-0 p-4 bg-rose-50/90 backdrop-blur-md rounded-b-xl">
+              <h2 className="text-lg font-bold text-rose-800 mb-2">{articles[currentArticleIndex]?.title || 'No Title'}</h2>
+              <p className="text-sm text-rose-600 mb-4">{articles[currentArticleIndex]?.description || 'No Description'}</p>
+              <div className="flex items-center justify-between text-xs text-rose-500">
                 <span>{articles[currentArticleIndex]?.source?.name || 'Unknown Source'}</span>
                 <span>
                   <Clock className="w-3 h-3 inline-block mr-1" />
@@ -120,11 +138,11 @@ const NewsApp = () => {
                 </span>
               </div>
               <div className="flex items-center justify-between mt-4">
-                <button className="flex items-center space-x-1 text-gray-400 hover:text-rose-500 transition-colors">
+                <button className="flex items-center space-x-1 text-gray-400 hover:text-pink-500 transition-colors">
                   <Heart className="w-4 h-4" />
                   <span>Like</span>
                 </button>
-                <button className="flex items-center space-x-1 text-gray-400 hover:text-pink-500 transition-colors">
+                <button className="flex items-center space-x-1 text-gray-400 hover:text-rose-500 transition-colors">
                   <Bookmark className="w-4 h-4" />
                   <span>Save</span>
                 </button>
@@ -137,7 +155,7 @@ const NewsApp = () => {
           </div>
         ) : (
           <div className="text-center">
-            <p className="text-gray-600">No stories available</p>
+            <p className="text-rose-600">No stories available</p>
           </div>
         )}
       </main>
@@ -147,7 +165,7 @@ const NewsApp = () => {
         <button
           onClick={() => handleSwipe('right')}
           disabled={currentArticleIndex === 0}
-          className={`px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition ${
+          className={`px-4 py-2 rounded-full bg-rose-200 hover:bg-rose-300 transition ${
             currentArticleIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''
           }`}
         >
@@ -156,7 +174,7 @@ const NewsApp = () => {
         <button
           onClick={() => handleSwipe('left')}
           disabled={currentArticleIndex === articles.length - 1}
-          className={`px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition ${
+          className={`px-4 py-2 rounded-full bg-rose-200 hover:bg-rose-300 transition ${
             currentArticleIndex === articles.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
           }`}
         >
@@ -165,6 +183,24 @@ const NewsApp = () => {
       </footer>
 
       <style jsx>{`
+        .loader {
+          width: 50px;
+          height: 50px;
+          border: 5px solid #f3f3f3;
+          border-top: 5px solid #ff6f61;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+
         @media (max-width: 768px) {
           header {
             font-size: 14px;
