@@ -83,7 +83,7 @@ const NewsApp = () => {
       <header className="sticky top-0 z-50 bg-white shadow-md w-full">
         <div className="max-w-md mx-auto px-4 py-4 flex items-center justify-between">
           <h1 className="text-xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
-            Women's Fashion & Health News
+            Women&apos;s Fashion & Health News
           </h1>
           <p className="text-xs text-gray-500">Swipe to explore stories</p>
         </div>
