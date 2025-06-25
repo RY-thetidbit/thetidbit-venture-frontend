@@ -199,7 +199,7 @@ const MovieTrailerApp = () => {
         "views": "10M",
         "uploadDate": "Nov 11, 2024",
         "channel": "Paramount Pictures",
-        "description": "Tom Cruise returns as Ethan Hunt; "Final Reckoning" drops May 23, 2025.",
+        "description": "Tom Cruise returns as Ethan Hunt; \"Final Reckoning\" drops May 23, 2025.", // Fixed quotation mark
         "likes": "650K",
         "videoUrl": "https://www.youtube.com/watch?v=stuvwx",
         "genre": "Action",
