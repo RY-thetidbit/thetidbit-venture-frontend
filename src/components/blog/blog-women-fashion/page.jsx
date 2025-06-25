@@ -3,74 +3,47 @@
 import React, { useState, useEffect } from 'react';
 import { Heart, Share2, Bookmark, Clock } from 'lucide-react';
 
-const CACHE_KEY = 'indian_women_fashion_health_news_cache';
-const CACHE_EXPIRY = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
+const RSS_FEED_URL = "https://timesofindia.indiatimes.com/rssfeedstopstories.cms";
 
 const NewsApp = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentArticleIndex, setCurrentArticleIndex] = useState(0);
-  const [language, setLanguage] = useState(null);
 
   useEffect(() => {
-    const fetchNews = async () => {
+    const fetchRSSFeed = async () => {
       setLoading(true);
 
       try {
-        // Check localStorage for cached data
-        const cachedData = localStorage.getItem(CACHE_KEY);
-        if (cachedData) {
-          const { articles: cachedArticles, timestamp, cachedLanguage } = JSON.parse(cachedData);
-          const now = Date.now();
-          if (now - timestamp < CACHE_EXPIRY && cachedLanguage === language) {
-            setArticles(cachedArticles || []);
-            setLoading(false);
-            return;
-          }
-        }
-
-        // Fetch fresh data if cache is expired or not available
-        const query = language === 'hindi' ? 'भारतीय महिला फैशन OR स्वास्थ्य OR ट्रेंड' : 'Indian women fashion OR health OR trends';
-        const response = await fetch(
-          `https://newsapi.org/v2/everything?q=${query}&apiKey=dee373b831964dfdb34259a56efbf20b&pageSize=50`
-        );
+        const response = await fetch(RSS_FEED_URL);
 
         if (!response.ok) {
           throw new Error(`HTTP Error: ${response.status}`);
         }
 
-        const data = await response.json();
-        setArticles(data.articles || []);
+        const text = await response.text();
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(text, "application/xml");
 
-        // Cache the data in localStorage
-        localStorage.setItem(
-          CACHE_KEY,
-          JSON.stringify({ articles: data.articles, timestamp: Date.now(), cachedLanguage: language })
-        );
+        const items = Array.from(xml.querySelectorAll("item")).map((item) => ({
+          title: item.querySelector("title")?.textContent || "No Title",
+          description: item.querySelector("description")?.textContent.replace("<![CDATA[", "").replace("]]>", "") || "No Description",
+          urlToImage: item.querySelector("enclosure")?.getAttribute("url") || "https://via.placeholder.com/600x400",
+          link: item.querySelector("link")?.textContent || "#",
+          source: { name: "Times of India" },
+          publishedAt: item.querySelector("pubDate")?.textContent || new Date().toISOString(),
+        }));
+
+        setArticles(items || []);
       } catch (error) {
-        console.error('Error fetching news:', error);
+        console.error("Error fetching RSS feed:", error);
         setArticles([]); // Ensure articles is always an array
       } finally {
         setLoading(false);
       }
     };
 
-    if (language) {
-      fetchNews();
-    }
-  }, [language]);
-
-  useEffect(() => {
-    const userLanguage = localStorage.getItem('preferred_language');
-    if (userLanguage) {
-      setLanguage(userLanguage);
-    } else {
-      const selectedLanguage = window.confirm('Would you like to see news in Hindi? Click "Cancel" for English.')
-        ? 'hindi'
-        : 'english';
-      setLanguage(selectedLanguage);
-      localStorage.setItem('preferred_language', selectedLanguage);
-    }
+    fetchRSSFeed();
   }, []);
 
   const handleSwipe = (direction) => {
@@ -110,7 +83,7 @@ const NewsApp = () => {
       <header className="sticky top-0 z-50 bg-white shadow-md w-full">
         <div className="max-w-md mx-auto px-4 py-4 flex items-center justify-between">
           <h1 className="text-xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
-            Indian Women Fashion & Health News
+            Women's Fashion & Health News
           </h1>
           <p className="text-xs text-gray-500">Swipe to explore stories</p>
         </div>
@@ -139,7 +112,7 @@ const NewsApp = () => {
               <h2 className="text-lg font-bold text-gray-800 mb-2">{articles[currentArticleIndex]?.title || 'No Title'}</h2>
               <p className="text-sm text-gray-600 mb-4">{articles[currentArticleIndex]?.description || 'No Description'}</p>
               <div className="flex items-center justify-between text-xs text-gray-500">
-                <span>{articles[currentArticleIndex]?.source?.name || 'Unknown Source'}</span>
+                <span>{articles[currentArticleIndex]?.source?.name || 'RSS Feed'}</span>
                 <span>
                   <Clock className="w-3 h-3 inline-block mr-1" />
                   {formatTime(articles[currentArticleIndex]?.publishedAt || new Date())}
