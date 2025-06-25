@@ -368,7 +368,7 @@ const MovieTrailerApp = () => {
           
           {/* Handle empty search results */}
           {filteredTrailers.length === 0 ? (
-            <p className="text-muted">No trailers found for "{searchTerm}".</p>
+            <p className="text-muted">No trailers found for &quot;{searchTerm}&quot;.</p>
           ) : (
             <div className="row g-4">
               {filteredTrailers.map((trailer) => (
