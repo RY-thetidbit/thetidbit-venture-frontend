@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Heart, Share2, Bookmark, Clock } from 'lucide-react';
 
+const PROXY_URL = "https://api.allorigins.win/get?url=";
 const RSS_FEED_URL = "https://timesofindia.indiatimes.com/rssfeedstopstories.cms";
 
 const NewsApp = () => {
@@ -15,15 +16,15 @@ const NewsApp = () => {
       setLoading(true);
 
       try {
-        const response = await fetch(RSS_FEED_URL);
+        const response = await fetch(`${PROXY_URL}${encodeURIComponent(RSS_FEED_URL)}`);
 
         if (!response.ok) {
           throw new Error(`HTTP Error: ${response.status}`);
         }
 
-        const text = await response.text();
+        const data = await response.json();
         const parser = new DOMParser();
-        const xml = parser.parseFromString(text, "application/xml");
+        const xml = parser.parseFromString(data.contents, "application/xml");
 
         const items = Array.from(xml.querySelectorAll("item")).map((item) => ({
           title: item.querySelector("title")?.textContent || "No Title",
