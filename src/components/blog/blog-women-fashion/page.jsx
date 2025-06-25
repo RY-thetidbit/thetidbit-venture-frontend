@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { Heart, Share2, Bookmark, Clock } from 'lucide-react';
 
 const PROXY_URL = "https://api.allorigins.win/get?url=";
-const NEWS_API_URL_ENGLISH = "https://newsapi.org/v2/everything?q=women+OR+fashion+OR+health+OR+food&language=en&apiKey=dee373b831964dfdb34259a56efbf20b";
-const NEWS_API_URL_HINDI = "https://newsapi.org/v2/everything?q=women&language=hi&apiKey=dee373b831964dfdb34259a56efbf20b";
+const NEWS_API_URL_ENGLISH = `${PROXY_URL}${("https://timesofindia.indiatimes.com/rssfeeds/2886704.cms")}`;
+const NEWS_API_URL_HINDI = `${PROXY_URL}${encodeURIComponent("https://newsapi.org/v2/everything?q=महिला+OR+फैशन+OR+स्वास्थ्य+OR+भोजन&language=hi&apiKey=dee373b831964dfdb34259a56efbf20b")}`;
 
 const NewsApp = () => {
   const [articles, setArticles] = useState([]);
@@ -19,23 +19,36 @@ const NewsApp = () => {
 
       try {
         const apiUrl = language === 'hindi' ? NEWS_API_URL_HINDI : NEWS_API_URL_ENGLISH;
-        const response = await fetch(`${PROXY_URL}${encodeURIComponent(apiUrl)}`);
+        const response = await fetch(apiUrl);
 
         if (!response.ok) {
           throw new Error(`HTTP Error: ${response.status}`);
         }
 
         const data = await response.json();
-        const parsedData = JSON.parse(data.contents);
+        const parsedData = language === 'hindi' ? JSON.parse(data.contents) : data.contents;
 
-        const items = parsedData.articles.map((article) => ({
-          title: article.title || "No Title",
-          description: article.description || "No Description",
-          urlToImage: article.urlToImage || "https://via.placeholder.com/600x400",
-          link: article.url || "#",
-          source: { name: article.source.name || "Unknown Source" },
-          publishedAt: article.publishedAt || new Date().toISOString(),
-        }));
+        const items = Array.isArray(parsedData.articles)
+          ? parsedData.articles.map((article) => ({
+              title: article.title || "No Title",
+              description: article.description || "No Description",
+              urlToImage: article.urlToImage || "https://via.placeholder.com/600x400",
+              link: article.url || "#",
+              source: { name: article.source.name || "Unknown Source" },
+              publishedAt: article.publishedAt || new Date().toISOString(),
+            }))
+          : Array.from(new DOMParser().parseFromString(parsedData, "application/xml").querySelectorAll("item")).map((item) => {
+              const rawDescription = item.querySelector("description")?.textContent || "No Description";
+              const cleanedDescription = rawDescription.replace(/<img[^>]*>/g, "").trim(); // Remove <img> tags
+              return {
+                title: item.querySelector("title")?.textContent || "No Title",
+                description: cleanedDescription,
+                urlToImage: item.querySelector("enclosure")?.getAttribute("url") || "https://via.placeholder.com/600x400",
+                link: item.querySelector("link")?.textContent || "#",
+                source: { name: "Times of India" },
+                publishedAt: item.querySelector("pubDate")?.textContent || new Date().toISOString(),
+              };
+            });
 
         setArticles(items || []);
       } catch (error) {
@@ -56,9 +69,9 @@ const NewsApp = () => {
     if (userLanguage) {
       setLanguage(userLanguage);
     } else {
-      const selectedLanguage = window.confirm('Would you like to see news in Hindi? Click "Cancel" for English.')
-        ? 'hindi'
-        : 'english';
+      const selectedLanguage = window.confirm('Would you like to see news in English? Click "Cancel" for Hindi.')
+        ? 'english'
+        : 'hindi';
       setLanguage(selectedLanguage);
       localStorage.setItem('preferred_language', selectedLanguage);
     }
@@ -100,10 +113,26 @@ const NewsApp = () => {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white shadow-md w-full rounded-b-lg">
         <div className="max-w-md mx-auto px-4 py-4 flex items-center justify-between">
-          <h1 className="text-xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
-            Women&apos;s Fashion & Health News
-          </h1>
-          <p className="text-xs text-gray-500">Swipe to explore stories</p>
+        <h1 
+  style={{
+    fontFamily: "'Poppins', sans-serif",
+    fontSize: "1rem",
+    fontWeight: "700",
+    backgroundImage: "linear-gradient(to right, #ec4899, #f43f5e, #8b5cf6)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    letterSpacing: "1px",
+    textShadow: "1px 1px 3px rgba(255, 105, 180, 0.6)",
+    textAlign: "center",
+    margin: "4px 0",
+    padding: "8px 12px",
+    borderRadius: "8px",
+    backgroundColor: "rgba(255, 240, 245, 0.2)",
+  }}
+>
+✨ Empowering Women: Fashion, Health & Lifestyle ✨
+</h1>
+          {/* <p className="text-xs text-gray-500">Swipe to explore stories</p> */}
         </div>
       </header>
 
@@ -128,7 +157,7 @@ const NewsApp = () => {
               style={{ height: "16rem", objectFit: "cover", width: "-webkit-fill-available" }}
             />
             <div className="absolute inset-x-0 bottom-0 p-4 bg-rose-50/90 backdrop-blur-md rounded-b-xl">
-              <h2 className="text-lg font-bold text-rose-800 mb-2">{articles[currentArticleIndex]?.title || 'No Title'}</h2>
+              <h3 className="text-sm font-bold text-rose-800 mb-2">{articles[currentArticleIndex]?.title || 'No Title'}</h3>
               <p className="text-sm text-rose-600 mb-4">{articles[currentArticleIndex]?.description || 'No Description'}</p>
               <div className="flex items-center justify-between text-xs text-rose-500">
                 <span>{articles[currentArticleIndex]?.source?.name || 'Unknown Source'}</span>
