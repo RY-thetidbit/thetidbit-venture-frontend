@@ -20,7 +20,7 @@ const MovieTrailerApp = () => {
       "channel": "YRF Spy Universe",
       "description": "Hrithik Roshan and Jr NTR reunite in the high‑octane spy sequel set to release on August 14, 2025.",
       "likes": "520K",
-      "videoUrl": "https://www.youtube.com/watch?v=LZ7lEjkXkW0",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/LZ7lEjkXkW0",
       "genre": "Action/Spy",
       "releaseDate": "2025-08-14"
     },
@@ -34,7 +34,7 @@ const MovieTrailerApp = () => {
       "channel": "Bollywood Studioz",
       "description": "Ranveer Singh stars in Aditya Dhar’s spy thriller; teaser launched on his birthday.",
       "likes": "12K",
-      "videoUrl": "https://www.youtube.com/watch?v=MrdZjrSD9Kc",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/MrdZjrSD9Kc",
       "genre": "Spy/Action",
       "releaseDate": "2025-07-06"
     },
@@ -48,7 +48,7 @@ const MovieTrailerApp = () => {
       "channel": "YRF Spy Universe",
       "description": "Agent Kabir (Hrithik) and Zorawar (NTR) bring double the fire in this explosive spy teaser.",
       "likes": "310K",
-      "videoUrl": "https://www.youtube.com/watch?v=S9wsfWnraiM",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/S9wsfWnraiM",
       "genre": "Action/Spy",
       "releaseDate": "2025-08-14"
     },
@@ -62,7 +62,7 @@ const MovieTrailerApp = () => {
       "channel": "Madhavan Films",
       "description": "R. Madhavan & Fatima Sana Sheikh star in this heartfelt drama—perfect for a cinema release.",
       "likes": "45K",
-      "videoUrl": "https://www.youtube.com/watch?v=IC_2jSsWpZk",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/IC_2jSsWpZk",
       "genre": "Drama/Romance",
       "releaseDate": "2025-TBA"
     },
@@ -76,7 +76,7 @@ const MovieTrailerApp = () => {
       "channel": "B4U",
       "description": "Rajpal Yadav & Palaash Muchhal in this new 2025 drama about destiny and family.",
       "likes": "85K",
-      "videoUrl": "https://www.youtube.com/watch?v=B6e7jvDKA7w",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/B6e7jvDKA7w",
       "genre": "Drama",
       "releaseDate": "2025-TBA"
     },
@@ -90,7 +90,7 @@ const MovieTrailerApp = () => {
       "channel": "ZEE5 Originals",
       "description": "Rajkummar Rao stars in this gripping teaser for a powerful Hindi drama ‘Maalik’.",
       "likes": "18K",
-      "videoUrl": "https://www.youtube.com/watch?v=fI_Cg4r4FpU",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/fI_Cg4r4FpU",
       "genre": "Drama",
       "releaseDate": "2025-TBA"
     },
@@ -104,7 +104,7 @@ const MovieTrailerApp = () => {
       "channel": "Kajol Studios",
       "description": "Kajol returns in ‘MAA’, a horror‑thriller hitting screens June 27, 2025.",
       "likes": "52K",
-      "videoUrl": "https://www.youtube.com/watch?v=lVvMbXiJjko",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/lVvMbXiJjko",
       "genre": "Horror/Thriller",
       "releaseDate": "2025-06-27"
     },
@@ -118,7 +118,7 @@ const MovieTrailerApp = () => {
       "channel": "Sandeep Reddy Vanga Films",
       "description": "Prabhas pairs with Tripti Dimri in this intense concept trailer from director Sandeep Reddy Vanga.",
       "likes": "110K",
-      "videoUrl": "https://www.youtube.com/watch?v=9h6TULs4uNk",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/9h6TULs4uNk",
       "genre": "Drama",
       "releaseDate": "2025-TBA"
     },
@@ -132,7 +132,7 @@ const MovieTrailerApp = () => {
       "channel": "Rajkummar Rao Films",
       "description": "Rajkummar Rao & Wamiqa Gazaratha star in this emotional drama teaser.",
       "likes": "65K",
-      "videoUrl": "https://www.youtube.com/watch?v=RLpq04C9kRw",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/RLpq04C9kRw",
       "genre": "Drama",
       "releaseDate": "2025-TBA"
     },
@@ -146,149 +146,150 @@ const MovieTrailerApp = () => {
       "channel": "Maddock Films",
       "description": "Janhvi Kapoor & Sidharth Malhotra in new cross‑cultural rom‑com releasing July 25, 2025.",
       "likes": "75K",
-      "videoUrl": "https://www.youtube.com/watch?v=eINBi8ibQ-U",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/eINBi8ibQ-U",
       "genre": "Romantic Comedy",
       "releaseDate": "2025-07-25"
-    },{
-        "id": 11,
-        "title": "Fantastic Four: First Steps – Final Trailer",
-        "thumbnail": "https://i.ytimg.com/vi/abcdef/hqdefault.jpg",
-        "duration": "2:30",
-        "views": "5M",
-        "uploadDate": "Today",
-        "channel": "Marvel Entertainment",
-        "description": "Team faces Galactus & Silver Surfer ahead of July 25, 2025 release.",
-        "likes": "200K",
-        "videoUrl": "https://www.youtube.com/watch?v=abcdef",
-        "genre": "Superhero",
-        "releaseDate": "2025-07-25"
-      },
-      {
-        "id": 12,
-        "title": "Roofman – Official Trailer",
-        "thumbnail": "https://i.ytimg.com/vi/ghijkl/hqdefault.jpg",
-        "duration": "2:15",
-        "views": "1.2M",
-        "uploadDate": "Today",
-        "channel": "Paramount Pictures",
-        "description": "Channing Tatum in true story drama set to release October 10, 2025.",
-        "likes": "85K",
-        "videoUrl": "https://www.youtube.com/watch?v=ghijkl",
-        "genre": "Drama/Biographical",
-        "releaseDate": "2025-10-10"
-      },
-      {
-        "id": 13,
-        "title": "Toxic Avenger – Official Trailer",
-        "thumbnail": "https://i.ytimg.com/vi/mnopqr/hqdefault.jpg",
-        "duration": "2:05",
-        "views": "800K",
-        "uploadDate": "4 days ago",
-        "channel": "Legendary Pictures",
-        "description": "Peter Dinklage as Toxic Avenger in gory reboot releasing August 29, 2025.",
-        "likes": "45K",
-        "videoUrl": "https://www.youtube.com/watch?v=mnopqr",
-        "genre": "Superhero/Action",
-        "releaseDate": "2025-08-29"
-      },
-      {
-        "id": 14,
-        "title": "Mission: Impossible 8 – Official Teaser",
-        "thumbnail": "https://i.ytimg.com/vi/stuvwx/hqdefault.jpg",
-        "duration": "1:45",
-        "views": "10M",
-        "uploadDate": "Nov 11, 2024",
-        "channel": "Paramount Pictures",
-        "description": "Tom Cruise returns as Ethan Hunt; \"Final Reckoning\" drops May 23, 2025.", // Fixed quotation mark
-        "likes": "650K",
-        "videoUrl": "https://www.youtube.com/watch?v=stuvwx",
-        "genre": "Action",
-        "releaseDate": "2025-05-23"
-      },
-      {
-        "id": 15,
-        "title": "Superman (2025) – Official Trailer",
-        "thumbnail": "https://i.ytimg.com/vi/yzabcd/hqdefault.jpg",
-        "duration": "2:10",
-        "views": "7M",
-        "uploadDate": "6 months ago",
-        "channel": "DC Studios",
-        "description": "David Corenswet debuts as Superman in James Gunn’s DC re‑launch, due July 2025.",
-        "likes": "400K",
-        "videoUrl": "https://www.youtube.com/watch?v=yzabcd",
-        "genre": "Superhero",
-        "releaseDate": "2025-07"
-      },
-      {
-        "id": 16,
-        "title": "Kiss of the Spider Woman – Teaser Trailer",
-        "thumbnail": "https://i.ytimg.com/vi/efghij/hqdefault.jpg",
-        "duration": "1:50",
-        "views": "2M",
-        "uploadDate": "Jun 5, 2025",
-        "channel": "Lionsgate",
-        "description": "Jennifer Lopez in musical‑drama debut from Sundance, releasing fall 2025.",
-        "likes": "120K",
-        "videoUrl": "https://www.youtube.com/watch?v=efghij",
-        "genre": "Musical/Drama",
-        "releaseDate": "2025-Fall"
-      },
-      {
-        "id": 17,
-        "title": "28 Years Later – Official Trailer",
-        "thumbnail": "https://i.ytimg.com/vi/klmnop/hqdefault.jpg",
-        "duration": "1:55",
-        "views": "10M",
-        "uploadDate": "Dec 10, 2024",
-        "channel": "Sony Pictures",
-        "description": "Danny Boyle’s sequel trailer went viral with 10M+ within 48h.",
-        "likes": "350K",
-        "videoUrl": "https://www.youtube.com/watch?v=klmnop",
-        "genre": "Horror",
-        "releaseDate": "2025-06-20"
-      },
-      {
-        "id": 18,
-        "title": "Avatar 3: Fire and Ash – Teaser",
-        "thumbnail": "https://i.ytimg.com/vi/qrstuv/hqdefault.jpg",
-        "duration": "2:58",
-        "views": "3M",
-        "uploadDate": "2 days ago",
-        "channel": "20th Century Studios",
-        "description": "James Cameron returns to Pandora in this epic sci‑fi teaser.",
-        "likes": "180K",
-        "videoUrl": "https://www.youtube.com/watch?v=qrstuv",
-        "genre": "Sci‑Fi",
-        "releaseDate": "2025-12"
-      },
-      {
-        "id": 19,
-        "title": "Mickey 17 – Official Teaser",
-        "thumbnail": "https://i.ytimg.com/vi/wxyz12/hqdefault.jpg",
-        "duration": "2:20",
-        "views": "1.5M",
-        "uploadDate": "2 days ago",
-        "channel": "Amazon MGM",
-        "description": "Sci‑fi adaptation starring Robert Pattinson, coming 2025.",
-        "likes": "90K",
-        "videoUrl": "https://www.youtube.com/watch?v=wxyz12",
-        "genre": "Sci‑Fi",
-        "releaseDate": "2025"
-      },
-      {
-        "id": 20,
-        "title": "The Last Train from Hiroshima – Trailer",
-        "thumbnail": "https://i.ytimg.com/vi/abcd34/hqdefault.jpg",
-        "duration": "2:05",
-        "views": "1.8M",
-        "uploadDate": "3 days ago",
-        "channel": "Hollywood Streams",
-        "description": "Historical drama trailer depicting aftermath of WWII.",
-        "likes": "70K",
-        "videoUrl": "https://www.youtube.com/watch?v=abcd34",
-        "genre": "Historical/Drama",
-        "releaseDate": "2025"
-      }    
+    },
+    {
+      "id": 11,
+      "title": "Fantastic Four: First Steps – Final Trailer",
+      "thumbnail": "https://i.ytimg.com/vi/abcdef/hqdefault.jpg",
+      "duration": "2:30",
+      "views": "5M",
+      "uploadDate": "Today",
+      "channel": "Marvel Entertainment",
+      "description": "Team faces Galactus & Silver Surfer ahead of July 25, 2025 release.",
+      "likes": "200K",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/abcdef",
+      "genre": "Superhero",
+      "releaseDate": "2025-07-25"
+    },
+    {
+      "id": 12,
+      "title": "Roofman – Official Trailer",
+      "thumbnail": "https://i.ytimg.com/vi/ghijkl/hqdefault.jpg",
+      "duration": "2:15",
+      "views": "1.2M",
+      "uploadDate": "Today",
+      "channel": "Paramount Pictures",
+      "description": "Channing Tatum in true story drama set to release October 10, 2025.",
+      "likes": "85K",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/ghijkl",
+      "genre": "Drama/Biographical",
+      "releaseDate": "2025-10-10"
+    },
+    {
+      "id": 13,
+      "title": "Toxic Avenger – Official Trailer",
+      "thumbnail": "https://i.ytimg.com/vi/mnopqr/hqdefault.jpg",
+      "duration": "2:05",
+      "views": "800K",
+      "uploadDate": "4 days ago",
+      "channel": "Legendary Pictures",
+      "description": "Peter Dinklage as Toxic Avenger in gory reboot releasing August 29, 2025.",
+      "likes": "45K",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/mnopqr",
+      "genre": "Superhero/Action",
+      "releaseDate": "2025-08-29"
+    },
+    {
+      "id": 14,
+      "title": "Mission: Impossible 8 – Official Teaser",
+      "thumbnail": "https://i.ytimg.com/vi/stuvwx/hqdefault.jpg",
+      "duration": "1:45",
+      "views": "10M",
+      "uploadDate": "Nov 11, 2024",
+      "channel": "Paramount Pictures",
+      "description": "Tom Cruise returns as Ethan Hunt; &quot;Final Reckoning&quot; drops May&nbsp;23,&nbsp;2025.", // Fixed unescaped quotes
+      "likes": "650K",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/stuvwx",
+      "genre": "Action",
+      "releaseDate": "2025-05-23"
+    },
+    {
+      "id": 15,
+      "title": "Superman (2025) – Official Trailer",
+      "thumbnail": "https://i.ytimg.com/vi/yzabcd/hqdefault.jpg",
+      "duration": "2:10",
+      "views": "7M",
+      "uploadDate": "6 months ago",
+      "channel": "DC Studios",
+      "description": "David Corenswet debuts as Superman in James Gunn&rsquo;s DC re‑launch, due July&nbsp;2025.", // Fixed unescaped quotes
+      "likes": "400K",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/yzabcd",
+      "genre": "Superhero",
+      "releaseDate": "2025-07"
+    },
+    {
+      "id": 16,
+      "title": "Kiss of the Spider Woman – Teaser Trailer",
+      "thumbnail": "https://i.ytimg.com/vi/efghij/hqdefault.jpg",
+      "duration": "1:50",
+      "views": "2M",
+      "uploadDate": "Jun 5, 2025",
+      "channel": "Lionsgate",
+      "description": "Jennifer Lopez in musical‑drama debut from Sundance, releasing fall 2025.",
+      "likes": "120K",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/efghij",
+      "genre": "Musical/Drama",
+      "releaseDate": "2025-Fall"
+    },
+    {
+      "id": 17,
+      "title": "28 Years Later – Official Trailer",
+      "thumbnail": "https://i.ytimg.com/vi/klmnop/hqdefault.jpg",
+      "duration": "1:55",
+      "views": "10M",
+      "uploadDate": "Dec 10, 2024",
+      "channel": "Sony Pictures",
+      "description": "Danny Boyle’s sequel trailer went viral with 10M+ within 48h.",
+      "likes": "350K",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/klmnop",
+      "genre": "Horror",
+      "releaseDate": "2025-06-20"
+    },
+    {
+      "id": 18,
+      "title": "Avatar 3: Fire and Ash – Teaser",
+      "thumbnail": "https://i.ytimg.com/vi/qrstuv/hqdefault.jpg",
+      "duration": "2:58",
+      "views": "3M",
+      "uploadDate": "2 days ago",
+      "channel": "20th Century Studios",
+      "description": "James Cameron returns to Pandora in this epic sci‑fi teaser.",
+      "likes": "180K",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/qrstuv",
+      "genre": "Sci‑Fi",
+      "releaseDate": "2025-12"
+    },
+    {
+      "id": 19,
+      "title": "Mickey 17 – Official Teaser",
+      "thumbnail": "https://i.ytimg.com/vi/wxyz12/hqdefault.jpg",
+      "duration": "2:20",
+      "views": "1.5M",
+      "uploadDate": "2 days ago",
+      "channel": "Amazon MGM",
+      "description": "Sci‑fi adaptation starring Robert Pattinson, coming 2025.",
+      "likes": "90K",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/wxyz12",
+      "genre": "Sci‑Fi",
+      "releaseDate": "2025"
+    },
+    {
+      "id": 20,
+      "title": "The Last Train from Hiroshima – Trailer",
+      "thumbnail": "https://i.ytimg.com/vi/abcd34/hqdefault.jpg",
+      "duration": "2:05",
+      "views": "1.8M",
+      "uploadDate": "3 days ago",
+      "channel": "Hollywood Streams",
+      "description": "Historical drama trailer depicting aftermath of WWII.",
+      "likes": "70K",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/abcd34",
+      "genre": "Historical/Drama",
+      "releaseDate": "2025"
+    }    
   ];  
 
   useEffect(() => {
@@ -314,12 +315,6 @@ const MovieTrailerApp = () => {
   // Home Page Component
   const HomePage = () => (
     <div>
-      {/* Bootstrap CSS */}
-      <link 
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" 
-        rel="stylesheet"
-      />
-      
       <div className="min-vh-100" style={{background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)'}}>
         {/* Hero Section */}
         <div className="position-relative" style={{height: '400px', overflow: 'hidden'}}>
@@ -442,12 +437,6 @@ const MovieTrailerApp = () => {
   // Video Page Component
   const VideoPage = () => (
     <div>
-      {/* Bootstrap CSS */}
-      <link 
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" 
-        rel="stylesheet"
-      />
-      
       <div className="min-vh-100" style={{background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)'}}>
         {/* Header */}
         <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
@@ -504,7 +493,7 @@ const MovieTrailerApp = () => {
                     height="400"
                     src={selectedVideo.videoUrl}
                     title={selectedVideo.title}
-                    frameBorder="0"
+                    style={{ border: 'none' }} // Replace frameBorder with style
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
