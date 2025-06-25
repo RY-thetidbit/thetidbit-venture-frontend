@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Heart, Share2, Bookmark, Clock } from 'lucide-react';
+import HamsterLoader from "../../shared/HamsterLoader";
 
 const PROXY_URL = "https://api.allorigins.win/get?url=";
 const NEWS_API_URL_ENGLISH = `${PROXY_URL}${("https://timesofindia.indiatimes.com/rssfeeds/2886704.cms")}`;
@@ -113,26 +114,25 @@ const NewsApp = () => {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white shadow-md w-full rounded-b-lg">
         <div className="max-w-md mx-auto px-4 py-4 flex items-center justify-between">
-        <h1 
-  style={{
-    fontFamily: "'Poppins', sans-serif",
-    fontSize: "1rem",
-    fontWeight: "700",
-    backgroundImage: "linear-gradient(to right, #ec4899, #f43f5e, #8b5cf6)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    letterSpacing: "1px",
-    textShadow: "1px 1px 3px rgba(255, 105, 180, 0.6)",
-    textAlign: "center",
-    margin: "4px 0",
-    padding: "8px 12px",
-    borderRadius: "8px",
-    backgroundColor: "rgba(255, 240, 245, 0.2)",
-  }}
->
-✨ Empowering Women: Fashion, Health & Lifestyle ✨
-</h1>
-          {/* <p className="text-xs text-gray-500">Swipe to explore stories</p> */}
+          <h1 
+            style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: "1.2rem",
+              fontWeight: "700",
+              backgroundImage: "linear-gradient(to right, #ec4899, #f43f5e, #8b5cf6)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              letterSpacing: "1.5px",
+              textShadow: "2px 2px 4px rgba(255, 105, 180, 0.8)",
+              textAlign: "center",
+              margin: "8px 0",
+              padding: "12px 16px",
+              borderRadius: "12px",
+              backgroundColor: "rgba(255, 240, 245, 0.3)",
+            }}
+          >
+            ✨ Empowering Women: Fashion, Health & Lifestyle ✨
+          </h1>
         </div>
       </header>
 
@@ -140,8 +140,8 @@ const NewsApp = () => {
       <main className="flex-grow flex items-center justify-center">
         {loading ? (
           <div className="text-center">
-            <div className="loader mx-auto mb-4"></div>
-            <p className="text-rose-600">Fetching the latest stories for you...</p>
+            <HamsterLoader className="mx-auto mb-4" />
+            <p className="text-rose-600 font-medium">Fetching the latest stories for you...</p>
           </div>
         ) : articles.length > 0 ? (
           <div
@@ -184,7 +184,7 @@ const NewsApp = () => {
           </div>
         ) : (
           <div className="text-center">
-            <p className="text-rose-600">No stories available</p>
+            <p className="text-rose-600 font-medium">No stories available</p>
           </div>
         )}
       </main>
@@ -210,38 +210,6 @@ const NewsApp = () => {
           Next
         </button>
       </footer>
-
-      <style jsx>{`
-        .loader {
-          width: 50px;
-          height: 50px;
-          border: 5px solid #f3f3f3;
-          border-top: 5px solid #ff6f61;
-          border-radius: 50%;
-          animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-          0% {
-            transform: rotate(0deg);
-          }
-          100% {
-            transform: rotate(360deg);
-          }
-        }
-
-        @media (max-width: 768px) {
-          header {
-            font-size: 14px;
-          }
-          h1 {
-            font-size: 18px;
-          }
-          main {
-            padding: 0 16px;
-          }
-        }
-      `}</style>
     </div>
   );
 };
